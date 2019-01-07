@@ -1,12 +1,13 @@
 #Bison Match 3.0
 
 
-1. Install django verson 2.0.2
+1. Install django version 2.0.2
 
 2. Install the mysqlclient:
 
     pip3 install mysqlclient
 
+(Possibly migrate the db, gotta check on this.)
 
 3. To run the development server:
 
