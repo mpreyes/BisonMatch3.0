@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render
 
 from .models import Lustudent
 
@@ -10,7 +11,5 @@ def index(request):
 
 def about(request):
     LU_student = Lustudent.objects.values('name')
-
-
-    return HttpResponse(LU_student) 
-
+    context = {'LU_student': LU_student}
+    return render(request, 'bisonMatchApp/index.html', context)

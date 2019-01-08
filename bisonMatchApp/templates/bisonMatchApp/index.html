@@ -1,0 +1,9 @@
+{% if LU_student %}
+    <ul>
+    {% for student in LU_student %}
+        <li>{{ student.name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No students in db.</p>
+{% endif %}
