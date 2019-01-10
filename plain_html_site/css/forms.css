@@ -1,0 +1,187 @@
+/*
+Progress bar
+*/
+.progress-bar {
+  display: block;
+  padding: 0;
+  padding-bottom: 5%;
+  background-color: white;
+  margin: 0;
+
+  counter-reset: step;
+  z-index: -2;
+}
+
+.progress-bar li {
+  color: black;
+
+  position: relative;
+  list-style: none;
+  float: left;
+  width: 25%;
+  z-index: 2;
+}
+
+.progress-bar li:before {
+  background-color: white;
+  display: block;
+  content: counter(step);
+  counter-increment: step;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  border: 1px solid #ddd;
+  text-align: center;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.progress-bar li:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  top: 1em;
+  z-index: -2;
+}
+
+.progress-bar li:last-child:after {
+  content: none;
+}
+
+.progress-bar li.active {
+  color: #5cb85c;
+}
+
+.progress-bar li.active:before {
+  border-color: #5cb85c;
+}
+
+.progress-bar li.active:after {
+  background-color: #5cb85c;
+}
+
+
+
+
+
+.extra-padding-top {
+  padding: 3%;
+}
+
+.no-container-row {
+  background-color: #fa8072;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/*****
+ *
+ * Radio checked style related
+ * the fun part starts here
+ *
+ */
+input[type=radio] {
+  display: none;
+}
+
+.center {
+  display: block;
+  width: 20%;
+  margin: 0 auto;
+}
+
+.form-container {
+  width: 80%;
+  background-color: white;
+  margin: 8% auto;
+  padding: 5%;
+  padding-top: 0%;
+  margin-top: 0%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.progress-bar-container {
+  background-color: white;
+  width: 80%;
+  margin: 8% auto 0 auto;
+  padding-bottom: 0;
+  padding-top: 3%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/**
+ * How it should look when hovered
+ */
+.active-label, label:focus, label:hover, label:active, input:checked + label {
+  color: #e0758e;
+}
+.active-label:before, label:focus:before, label:hover:before, label:active:before, input:checked + label:before {
+  background: white;
+  border-color: #e0758e;
+}
+
+/**
+ * Make those labels sexy
+ */
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  display: block;
+  padding: 1rem 1rem 1rem 3rem;
+  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: white;
+  whitespace: no-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all .15s ease;
+  /**
+   * This is the radio fake dot basically
+   */
+}
+label:first-of-type {
+  border: 0;
+}
+label:before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: .2rem solid #ccc;
+}
+
+/**
+ * How it should look when checked
+ */
+input:checked + label:before {
+  border-color: white;
+  border: none;
+  background: #e0758e;
+}
+
+/**
+ * How it should look when disabled
+ */
+input:disabled + label {
+  background: #efefef;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: not-allowed;
+}
+input:disabled + label:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+input:disabled + label:before {
+  border-color: white;
+  background: white;
+}

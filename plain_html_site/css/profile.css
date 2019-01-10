@@ -1,0 +1,52 @@
+.card {
+  padding: 5% 0;
+}
+
+.card h4 {
+  padding-top: 10%;
+}
+
+.card p {
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 10%;
+}
+
+.row {
+  background-color: #fa8072;
+}
+
+
+.instructions {
+  padding-top: 3%;
+  margin: 0 auto;
+}
+
+
+.profile-photo {
+  width: 256px;
+  height: 256px;
+  margin: 0 auto;
+  font-size: 128px;
+  border-radius: 128px;
+  position: relative;
+  background-color: #E0EEEE;
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.fa-user {
+  position: absolute;
+  left: 67px;
+  margin: auto;
+  line-height: 256px;
+  color: #79CDCD;
+}
+
+
+.small-btn {
+  display: block;
+  margin: 0 auto;
+  width: 20%;
+}

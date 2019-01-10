@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Stylish Portfolio - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link href="css/forms.css" rel="stylesheet">
+    <link href="css/forms.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <form action="index.html" method="POST">
+      <div class="row no-container-row">
+        <div class="col-lg-3 col-md-2 col-sm-0"></div>
+
+        <div class="col-lg-6 col-md-8 col-sm-12" id="questions-container">
+
+          <div class="progress-bar-container">
+            <ul class="progress-bar" id="questions-progress-bar">
+              <li class="active" onclick="toggle_question(1);"></li>
+              <li onclick="toggle_question(2);"></li>
+              <li onclick="toggle_question(3);"></li>
+              <li onclick="toggle_question(4);"></li>
+            </ul>
+          </div>
+
+          <div class="form-container active">
+            <h2>Question 1</h2>
+
+            <div class="box">
+              <input type="radio" id="radio1" name="question1"/>
+              <label for="radio1">Crazy Option</label>
+
+              <input type="radio" id="radio2" name="question1"/>
+              <label for="radio2">Freaky Option</label>
+
+              <input type="radio" id="radio3" name="question1"/>
+              <label for="radio3">Cat Option</label>
+
+              <input type="radio" id="radio4" name="question1"/>
+              <label for="radio4">Final Option</label>
+            </div>
+
+            <a class="btn btn-primary center" onclick="next_question()">Next</a>
+          </div>
+
+
+
+          <div class="form-container">
+            <h2>Question 2</h2>
+
+            <div class="box">
+              <input type="radio" id="radio5" name="question2"/>
+              <label for="radio5">Parakeet</label>
+
+              <input type="radio" id="radio6" name="question2"/>
+              <label for="radio6">Moose</label>
+
+              <input type="radio" id="radio7" name="question2"/>
+              <label for="radio7">Dog</label>
+
+              <input type="radio" id="radio8" name="question2"/>
+              <label for="radio8">Cat</label>
+            </div>
+
+            <a class="btn btn-primary center" onclick="next_question()">Next</a>
+          </div>
+
+
+
+          <div class="form-container">
+            <h2>Question 3</h2>
+
+            <div class="box">
+              <input type="radio" id="radio9" name="question3"/>
+              <label for="radio9">Very Likely</label>
+
+              <input type="radio" id="radio10" name="question3"/>
+              <label for="radio10">Somewhat Likely</label>
+
+              <input type="radio" id="radio11" name="question3"/>
+              <label for="radio11">Neutral</label>
+
+              <input type="radio" id="radio12" name="question3"/>
+              <label for="radio12">Somewhat Unlikely</label>
+
+              <input type="radio" id="radio13" name="question3"/>
+              <label for="radio13">Very Unlikely</label>
+            </div>
+
+            <a class="btn btn-primary center" onclick="next_question()">Next</a>
+          </div>
+
+
+
+          <div class="form-container">
+            <h2>Question 4</h2>
+
+            <div class="box">
+              <input type="radio" id="radio14" name="question4"/>
+              <label for="radio14">Math</label>
+
+              <input type="radio" id="radio15" name="question4"/>
+              <label for="radio15">Science</label>
+
+              <input type="radio" id="radio16" name="question4"/>
+              <label for="radio16">Art</label>
+
+              <input type="radio" id="radio17" name="question4"/>
+              <label for="radio17">Reading</label>
+            </div>
+
+            <input type="submit" class="btn btn-primary center" name="submit">
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+      <div class="container">
+        <ul class="list-inline mb-5">
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3" href="#">
+              <i class="icon-social-facebook"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3" href="#">
+              <i class="icon-social-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white" href="#">
+              <i class="icon-social-github"></i>
+            </a>
+          </li>
+        </ul>
+        <p class="text-muted small mb-0">Copyright &copy; Your Website 2018</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/stylish-portfolio.min.js"></script>
+
+    <!-- Question control -->
+    <script src="js/question-control.js"></script>
+
+  </body>
+
+</html>
