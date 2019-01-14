@@ -1,0 +1,5 @@
+
+
+*.pyc
+/__pycache__/
+/bisonMatchApp/__pycache__/*.pyc
