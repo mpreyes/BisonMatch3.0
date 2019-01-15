@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bison Match - Profile</title>
+    <title>Bison Match - Add an Image</title>
 
     <!-- Bootstrap Core CSS -->
     <link href={% static "bisonMatchApp/vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
@@ -22,44 +22,27 @@
 
     <!-- Custom CSS -->
     <link href={% static "bisonMatchApp/css/stylish-portfolio.css" %} rel="stylesheet">
-
-
-
-    
-    <link href={% static "bisonMatchApp/css/forms.css" %} rel="stylesheet">
+    <link href={% static "bisonMatchApp/css/profile.css" %} rel="stylesheet">
 
   </head>
 
   <body id="page-top">
 
-  <div class="container">
+    <div class="row no-container-row">
+      <div class="col-lg-3 col-md-2 col-sm-2"></div>
 
-  <h1 class="text-center"> Let's get to know you! </h1>
-  
+      <div class="col-lg-6 col-md-8 col-sm-8 card">
 
+        <div class="profile-photo" onclick="someFunctionToUploadPhoto()">
+          <i class="fas fa-user"></i>
+        </div>
 
-  <div class="form-container">
+        <h4 class="instructions">Upload a photo to continue</h4>
+        <p>Please try to choose a square photo to avoid your photo looking squashed or stretched.</p>
 
-    <form action="" method="POST">
-  {% csrf_token %}
-      {{ form.errors }}
-{{ form.non_field_errors }}
- <div class="form-group">
-    {{form}}
-  </div>
-  <button type="submit" class="btn btn-primary text-center">Submit</button>
-</form>
-
-</div>
-</div>
-
-
-    {% comment %} <form action="/profile/" method="POST">
-
-    <label for="your_name">Your name: </label>
-    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-    <input type="submit" value="OK">
-</form> {% endcomment %}
+        <a href="/bisonMatch/profile/" class="btn btn-primary small-btn">Continue</a>
+      </div>
+    </div>
 
 
 
@@ -87,6 +70,7 @@
       </div>
     </footer>
 
+
     <!-- Bootstrap core JavaScript -->
     <script src={% static "bisonMatchApp/vendor/jquery/jquery.min.js" %}></script>
     <script src={% static "bisonMatchApp/vendor/bootstrap/js/bootstrap.bundle.min.js" %}></script>
@@ -96,10 +80,6 @@
 
     <!-- Custom scripts for this template -->
     <script src={% static "bisonMatchApp/js/stylish-portfolio.min.js" %}></script>
-
-    <!-- Question control -->
-    <script src={% static "bisonMatchApp/js/question-control.js" %}></script>
-
 
   </body>
 

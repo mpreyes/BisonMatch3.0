@@ -32,6 +32,14 @@
 
   <body id="page-top">
 
+           <div>
+           here be ye form data:
+                {% for field in profile_info %}
+                <li> {{field}} </li>
+            {% endfor %}
+          </div>
+
+
     <form action="index.html" method="POST">
       <div class="row no-container-row">
         <div class="col-lg-3 col-md-2 col-sm-0"></div>
@@ -46,6 +54,8 @@
               <li onclick="toggle_question(4);"></li>
             </ul>
           </div>
+        
+
 
           <div class="form-container active">
             <h2>Question 1</h2>
