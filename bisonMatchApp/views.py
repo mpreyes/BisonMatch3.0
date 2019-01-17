@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.db import connection
 
 from .models import Lustudent
 from .forms import ProfileForm
@@ -11,7 +12,6 @@ my_var = ""
 # Create your views here.
 
 def index(request):
-    #return HttpResponse("Hello, world. You're at the Bison Match 3.0 index page.... ")
     return render(request, 'bisonMatchApp/index.html')
 
 def about(request):
@@ -19,45 +19,40 @@ def about(request):
     context = {'LU_student': LU_student}
     return render(request, 'bisonMatchApp/about.html', context)
 
-def get_image(request):
-    return render(request, 'bisonMatchApp/get_image.html') 
-
-def profile(request):
-    if request.method == 'POST':
-    # create a form instance and populate it with data from the request:
-        form = ProfileForm(request.POST)
-    # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            request.session['name'] = form.cleaned_data['name']
-            request.session['lnumber'] = form.cleaned_data['lnumber']
-            request.session['emailaddress'] = form.cleaned_data['emailaddress']
-            request.session['gender'] = form.cleaned_data['gender']
-            request.session['bio'] = form.cleaned_data['bio']
-            
-            return HttpResponseRedirect('/bisonMatch/quiz/')
-# if a GET (or any other method) we'll create a blank form
-    else:
-        form = ProfileForm()
-
-    return render(request, 'bisonMatchApp/profile.html', {'form': form})
-   # return render(request, 'bisonMatchApp/profile.html') 
-
 
 def quiz(request):
-    profile_info = []
-    name = request.session['name']
-    lnumber = request.session['lnumber']
-    emailaddress = request.session['emailaddress']
-    gender = request.session['gender']
-    bio = request.session['bio']
+    if request.method == 'POST':
+        print("Processing post...")
+        # Check in the terminal for how the session variables are coming in...
+        for key, value in request.POST.items():
+            print('{} => {}'.format(key, value))
 
-    profile_info.append(name)
-    profile_info.append(lnumber)
-    profile_info.append(emailaddress)
-    profile_info.append(gender)
-    profile_info.append(bio)
+        sql = "INSERT INTO lustudent VALUES ("
+        sql += "'" + request.POST["name"] + "', "
+        sql += "'" + request.POST["l-number"] + "', "
+        sql += "'" + request.POST["email"] + "', "
+        sql += "'" + request.POST["gender"] + "', "
+        sql += "'" + request.POST["bio"] + "', "
+        sql += request.POST["question1"] + ", "
+        sql += request.POST["question2"] + ", "
+        sql += request.POST["question3"] + ", "
+        sql += request.POST["question4"] + ", "
+        sql += request.POST["question5"] + ", "
+        sql += request.POST["question6"] + ", "
+        sql += request.POST["question7"] + ", "
+        sql += request.POST["question8"] + ", "
+        sql += request.POST["question9"] + ", "
+        sql += request.POST["question10"] + ", "
 
-    return render(request, 'bisonMatchApp/quiz.html',{'profile_info': profile_info})
+        #===========================================
+        # TODO implement profile picture url
+        #===========================================
+        sql += "'dummyurl.png', "
+        sql += "0);"
+
+        cursor = connection.cursor()
+        cursor.execute(sql)
+
+        return HttpResponseRedirect('/bisonMatch/')
+    else:
+        return render(request, 'bisonMatchApp/quiz.html')

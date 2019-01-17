@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'BisonMatch3.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 
-## MR: edit per db schema 
+## MR: edit per db schema
 
 DATABASES = {
     # 'default': {
@@ -87,9 +87,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BisonMatch',
         'USER': 'root',
-        'PASSWORD': 'root',
+        #'PASSWORD': 'root',
         'HOST': '127.0.0.1',
-        'PORT': '8889',
+        #'PORT': '8889',
+        'PORT': '3306',
     }
 }
 

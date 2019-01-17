@@ -25,6 +25,7 @@ class Lustudent(models.Model):
     ans9 = models.IntegerField(db_column='Ans9')  # Field name made lowercase.
     ans10 = models.IntegerField(db_column='Ans10')  # Field name made lowercase.
     profilepicurl = models.CharField(db_column='profilePicUrl', max_length=2083)  # Field name made lowercase.
+    paid = models.IntegerField(db_column="paid")
 
     class Meta:
         managed = False

@@ -1,202 +1,367 @@
+{% extends 'default.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Stylish Portfolio - Start Bootstrap Template</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href={% static "bisonMatchApp/vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href={% static "bisonMatchApp/vendor/fontawesome-free/css/all.min.css" %} rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href={% static "bisonMatchApp/vendor/simple-line-icons/css/simple-line-icons.css" %} rel="stylesheet">
+{% block content %}
+  <form action="" method="POST" name="form">
+    {% csrf_token %}
+    <div class="row no-container-row">
+      <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
 
 
-    <!-- Custom CSS -->
-    <link href={% static "bisonMatchApp/css/stylish-portfolio.css" %} rel="stylesheet">
+      <!--=============================================================================================================-->
+      <!-- Profile Image upload 'form' -->
+      <!--=============================================================================================================-->
+
+      <div class="col-lg-6 col-md-8 col-sm-10 col-10 card" id="profile-image-upload-form">
+
+        <div class="profile-photo" onclick="someFunctionToUploadPhoto()">
+          <i class="fas fa-user"></i>
+        </div>
+
+        <h4 class="instructions">Upload a photo to continue</h4>
+        <p>Please try to choose a square photo to avoid your photo looking squashed or stretched.</p>
+
+        <a href="#" class="btn btn-primary medium-btn" onclick="next_profile_form()">Continue</a>
+      </div>
 
 
 
-    
-    <link href={% static "bisonMatchApp/css/forms.css" %} rel="stylesheet">
+      <!--=============================================================================================================-->
+      <!-- User information 'form' -->
+      <!--=============================================================================================================-->
 
-  </head>
+      <div class="col-lg-6 col-md-6 col-sm-10 col-10 card" id="profile-info-form">
+        <div class="float-left even-height">
+          <label class="not-radio">*Name: </label>
+          <input type="text" class="text-input" name="name" required></input>
 
-  <body id="page-top">
+          <label class="not-radio">*L-Number: </label>
+          <input type="text" class="text-input" name="l-number" required></input>
 
-           <div>
-           here be ye form data:
-                {% for field in profile_info %}
-                <li> {{field}} </li>
-            {% endfor %}
+          <label class="not-radio">*Email Address: </label>
+          <input type="text" class="text-input" name="email" required></input>
+        </div>
+
+        <div class="float-right even-height">
+          <label class="not-radio">*Gender: </label>
+          <input type="radio" id="radio100" value="male" name="gender" required/>
+          <label class="special-radio" for="radio100">Male</label>
+          <input type="radio" id="radio101" value="female" name="gender"/>
+          <label class="special-radio" for="radio101">Female</label>
+        </div>
+
+        <label class="not-radio no-float">Bio: </label>
+        <textarea class="text-input textarea-input" name="bio"></textarea>
+
+        <div class="float-left">
+          <a href="#" class="btn btn-primary medium-btn" onclick="show_image_upload_form()">Previous</a>
+        </div>
+
+        <div class="float-right">
+          <a href="#" class="btn btn-primary medium-btn" onclick="show_quiz()">Next</a>
+        </div>
+
+        <p class="small-txt">All fields marked with * are required.</p>
+      </div>
+
+
+
+      <!--=============================================================================================================-->
+      <!-- Actual quiz 'form' -->
+      <!--=============================================================================================================-->
+
+      <div class="col-lg-6 col-md-8 col-sm-10 col-10" id="questions-container">
+
+        <div class="progress-bar-container" id="first_third">
+          <ul class="progress-bar" id="questions-progress-bar">
+            <li class="active" onclick="toggle_question(1);"></li>
+            <li onclick="toggle_question(2);"></li>
+            <li onclick="toggle_question(3);"></li>
+            <li onclick="toggle_question(4);"></li>
+          </ul>
+        </div>
+
+        <!--<div class="progress-bar-container" id="second_third">
+          <ul class="progress-bar" id="questions-progress-bar">
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li onclick="toggle_question(5);"></li>
+            <li onclick="toggle_question(6);"></li>
+            <li onclick="toggle_question(7);"></li>
+            <li onclick="toggle_question(8);"></li>
+          </ul>
+        </div>
+
+        <div class="progress-bar-container" id="third_third">
+          <ul class="progress-bar" id="questions-progress-bar">
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li style="display: none;"></li>
+            <li onclick="toggle_question(9);"></li>
+            <li onclick="toggle_question(10);"></li>
+          </ul>
+        </div>-->
+
+
+        <div class="form-container active">
+          <h2>Question 1</h2>
+
+          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+
+          <div class="box">
+            <input type="radio" id="radio1" value="0" name="question1" required/>
+            <label for="radio1">Crazy Option</label>
+
+            <input type="radio" id="radio2" value="1" name="question1"/>
+            <label for="radio2">Freaky Option</label>
+
+            <input type="radio" id="radio3" value="2" name="question1"/>
+            <label for="radio3">Cat Option</label>
+
+            <input type="radio" id="radio4" value="3" name="question1"/>
+            <label for="radio4">Final Option</label>
           </div>
 
-
-    <form action="index.html" method="POST">
-      <div class="row no-container-row">
-        <div class="col-lg-3 col-md-2 col-sm-0"></div>
-
-        <div class="col-lg-6 col-md-8 col-sm-12" id="questions-container">
-
-          <div class="progress-bar-container">
-            <ul class="progress-bar" id="questions-progress-bar">
-              <li class="active" onclick="toggle_question(1);"></li>
-              <li onclick="toggle_question(2);"></li>
-              <li onclick="toggle_question(3);"></li>
-              <li onclick="toggle_question(4);"></li>
-            </ul>
-          </div>
-        
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="edit_info_form()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
 
 
-          <div class="form-container active">
-            <h2>Question 1</h2>
-              
-              <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
 
-            <div class="box">
-              <input type="radio" id="radio1" name="question1"/>
-              <label for="radio1">Crazy Option</label>
+        <div class="form-container">
+          <h2>Question 2</h2>
 
-              <input type="radio" id="radio2" name="question1"/>
-              <label for="radio2">Freaky Option</label>
+                      <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
 
-              <input type="radio" id="radio3" name="question1"/>
-              <label for="radio3">Cat Option</label>
+          <div class="box">
+            <input type="radio" id="radio5" value="0" name="question2" required/>
+            <label for="radio5">Parakeet</label>
 
-              <input type="radio" id="radio4" name="question1"/>
-              <label for="radio4">Final Option</label>
-            </div>
+            <input type="radio" id="radio6" value="1" name="question2"/>
+            <label for="radio6">Moose</label>
 
-            <a class="btn btn-primary center" onclick="next_question()">Next</a>
+            <input type="radio" id="radio7" value="2" name="question2"/>
+            <label for="radio7">Dog</label>
+
+            <input type="radio" id="radio8" value="3" name="question2"/>
+            <label for="radio8">Cat</label>
           </div>
 
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
 
 
-          <div class="form-container">
-            <h2>Question 2</h2>
 
-                        <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+        <div class="form-container">
+          <h2>Question 3</h2>
 
-            <div class="box">
-              <input type="radio" id="radio5" name="question2"/>
-              <label for="radio5">Parakeet</label>
+          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
 
-              <input type="radio" id="radio6" name="question2"/>
-              <label for="radio6">Moose</label>
+          <div class="box">
+            <input type="radio" id="radio9" value="0" name="question3" required/>
+            <label for="radio9">Very Likely</label>
 
-              <input type="radio" id="radio7" name="question2"/>
-              <label for="radio7">Dog</label>
+            <input type="radio" id="radio10" value="1" name="question3"/>
+            <label for="radio10">Somewhat Likely</label>
 
-              <input type="radio" id="radio8" name="question2"/>
-              <label for="radio8">Cat</label>
-            </div>
+            <input type="radio" id="radio11" value="2" name="question3"/>
+            <label for="radio11">Neutral</label>
 
-            <a class="btn btn-primary center" onclick="next_question()">Next</a>
+            <input type="radio" id="radio12" value="3" name="question3"/>
+            <label for="radio12">Somewhat Unlikely</label>
+
+            <input type="radio" id="radio13" value="4" name="question3"/>
+            <label for="radio13">Very Unlikely</label>
           </div>
 
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
 
 
-          <div class="form-container">
-            <h2>Question 3</h2>
+
+        <div class="form-container">
+          <h2>Question 4</h2>
+
+          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+
+          <div class="box">
+            <input type="radio" id="radio14" value="0" name="question4" required/>
+            <label for="radio14">Very Likely</label>
+
+            <input type="radio" id="radio15" value="1" name="question4"/>
+            <label for="radio15">Somewhat Likely</label>
+
+            <input type="radio" id="radio16" value="2" name="question4"/>
+            <label for="radio16">Neutral</label>
+
+            <input type="radio" id="radio17" value="3" name="question4"/>
+            <label for="radio17">Somewhat Unlikely</label>
+          </div>
+
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
+
+
+
+        <div class="form-container">
+          <h2>Question 5</h2>
+
+          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+
+          <div class="box">
+            <input type="radio" id="radio18" value="0" name="question5" required/>
+            <label for="radio18">Very Likely</label>
+
+            <input type="radio" id="radio19" value="1" name="question5"/>
+            <label for="radio19">Somewhat Likely</label>
+
+            <input type="radio" id="radio20" value="2" name="question5"/>
+            <label for="radio20">Neutral</label>
+
+            <input type="radio" id="radio21" value="3" name="question5"/>
+            <label for="radio21">Somewhat Unlikely</label>
+          </div>
+
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
+
+
+
+        <div class="form-container">
+          <h2>Question 6</h2>
+
+          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+
+          <div class="box">
+            <input type="radio" id="radio22" value="0" name="question6" required/>
+            <label for="radio22">Very Likely</label>
+
+            <input type="radio" id="radio23" value="1" name="question6"/>
+            <label for="radio23">Somewhat Likely</label>
+
+            <input type="radio" id="radio24" value="2" name="question6"/>
+            <label for="radio24">Neutral</label>
+
+            <input type="radio" id="radio25" value="3" name="question6"/>
+            <label for="radio25">Somewhat Unlikely</label>
+          </div>
+
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
+
+
+
+        <div class="form-container">
+          <h2>Question 7</h2>
+
+          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+
+          <div class="box">
+            <input type="radio" id="radio26" value="0" name="question7" required/>
+            <label for="radio26">Very Likely</label>
+
+            <input type="radio" id="radio27" value="1" name="question7"/>
+            <label for="radio27">Somewhat Likely</label>
+
+            <input type="radio" id="radio28" value="2" name="question7"/>
+            <label for="radio28">Neutral</label>
+
+            <input type="radio" id="radio29" value="3" name="question7"/>
+            <label for="radio29">Somewhat Unlikely</label>
+          </div>
+
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
+
+
+
+        <div class="form-container">
+          <h2>Question 8</h2>
+
+          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+
+          <div class="box">
+            <input type="radio" id="radio30" value="0" name="question8" required/>
+            <label for="radio30">Very Likely</label>
+
+            <input type="radio" id="radio31" value="1" name="question8"/>
+            <label for="radio31">Somewhat Likely</label>
+
+            <input type="radio" id="radio32" value="2" name="question8"/>
+            <label for="radio32">Neutral</label>
+
+            <input type="radio" id="radio33" value="3" name="question8"/>
+            <label for="radio33">Somewhat Unlikely</label>
+          </div>
+
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
+
+
+
+        <div class="form-container">
+          <h2>Question 9</h2>
+
+          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+
+          <div class="box">
+            <input type="radio" id="radio34" value="0" name="question9" required/>
+            <label for="radio34">Very Likely</label>
+
+            <input type="radio" id="radio35" value="1" name="question9"/>
+            <label for="radio35">Somewhat Likely</label>
+
+            <input type="radio" id="radio36" value="2" name="question9"/>
+            <label for="radio36">Neutral</label>
+
+            <input type="radio" id="radio37" value="3" name="question9"/>
+            <label for="radio37">Somewhat Unlikely</label>
+          </div>
+
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><a class="btn btn-primary medium-btn" onclick="next_question()">Next</a></div>
+        </div>
+
+
+
+        <div class="form-container">
+          <h2>Question 10</h2>
 
             <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
 
-            <div class="box">
-              <input type="radio" id="radio9" name="question3"/>
-              <label for="radio9">Very Likely</label>
+          <div class="box">
+            <input type="radio" id="radio38" value="0" name="question10" required/>
+            <label for="radio38">Math</label>
 
-              <input type="radio" id="radio10" name="question3"/>
-              <label for="radio10">Somewhat Likely</label>
+            <input type="radio" id="radio39" value="1" name="question10"/>
+            <label for="radio39">Science</label>
 
-              <input type="radio" id="radio11" name="question3"/>
-              <label for="radio11">Neutral</label>
+            <input type="radio" id="radio40" value="2" name="question10"/>
+            <label for="radio40">Art</label>
 
-              <input type="radio" id="radio12" name="question3"/>
-              <label for="radio12">Somewhat Unlikely</label>
-
-              <input type="radio" id="radio13" name="question3"/>
-              <label for="radio13">Very Unlikely</label>
-            </div>
-
-            <a class="btn btn-primary center" onclick="next_question()">Next</a>
+            <input type="radio" id="radio41" value="3" name="question10"/>
+            <label for="radio41">Reading</label>
           </div>
 
-
-
-          <div class="form-container">
-            <h2>Question 4</h2>
-              
-              <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
-            <div class="box">
-              <input type="radio" id="radio14" name="question4"/>
-              <label for="radio14">Math</label>
-
-              <input type="radio" id="radio15" name="question4"/>
-              <label for="radio15">Science</label>
-
-              <input type="radio" id="radio16" name="question4"/>
-              <label for="radio16">Art</label>
-
-              <input type="radio" id="radio17" name="question4"/>
-              <label for="radio17">Reading</label>
-            </div>
-
-            <input type="submit" class="btn btn-primary center" name="submit">
-          </div>
-
+          <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
+          <div class="float-right"><input type="submit" class="btn btn-primary medium-btn" name="submit"></div>
         </div>
+
       </div>
-    </form>
-
-
-    <!-- Footer -->
-    <footer class="footer text-center">
-      <div class="container">
-        <ul class="list-inline mb-5">
-          <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white mr-3" href="#">
-              <i class="icon-social-facebook"></i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white mr-3" href="#">
-              <i class="icon-social-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white" href="#">
-              <i class="icon-social-github"></i>
-            </a>
-          </li>
-        </ul>
-        <p class="text-muted small mb-0">Copyright &copy; Your Website 2018</p>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src={% static "bisonMatchApp/vendor/jquery/jquery.min.js" %}></script>
-    <script src={% static "bisonMatchApp/vendor/bootstrap/js/bootstrap.bundle.min.js" %}></script>
-
-    <!-- Plugin JavaScript -->
-    <script src={% static "bisonMatchApp/vendor/jquery-easing/jquery.easing.min.js" %}></script>
-
-    <!-- Custom scripts for this template -->
-    <script src={% static "bisonMatchApp/js/stylish-portfolio.min.js" %}></script>
-
-    <!-- Question control -->
-    <script src={% static "bisonMatchApp/js/question-control.js" %}></script>
-
-
-  </body>
-
-</html>
+    </div>
+  </form>
+{% endblock %}
