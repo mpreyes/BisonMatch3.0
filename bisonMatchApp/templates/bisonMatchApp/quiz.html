@@ -1,4 +1,4 @@
-{% extends 'default.html' %}
+{% extends './default.html' %}
 {% load static %}
 
 {% block content %}
@@ -40,6 +40,11 @@
 
           <label class="not-radio">*Email Address: </label>
           <input type="text" class="text-input" name="email" required></input>
+
+          <label class="not-radio">*Major: </label>
+          <input type="text" class="text-input" name="major" required></input>
+
+
         </div>
 
         <div class="float-right even-height">
@@ -50,8 +55,24 @@
           <label class="special-radio" for="radio101">Female</label>
         </div>
 
+                    
+    <div class="float-right even-height"> 
+          <label class="not-radio">*Preference: </label>
+          <input type="radio" id="radio200" value="male" name="preference" required/>
+          <label class="special-radio" for="radio200">Male</label>
+          <input type="radio" id="radio201" value="female" name="preference"/>
+          <label class="special-radio" for="radio201">Female</label>
+        </div>
+
+
         <label class="not-radio no-float">Bio: </label>
         <textarea class="text-input textarea-input" name="bio"></textarea>
+
+          <label class="not-radio no-float">Describe Your Ideal Date: </label>
+        <textarea class="text-input textarea-input" name="idealdate"></textarea>
+
+
+  
 
         <div class="float-left">
           <a href="#" class="btn btn-primary medium-btn" onclick="show_image_upload_form()">Previous</a>
@@ -111,10 +132,11 @@
 
 
         <div class="form-container active">
-          <h2>Question 1</h2>
+          <h2 class="text-center">Question 1</h2>
 
-          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
 
+           <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio1" value="0" name="question1" required/>
             <label for="radio1">Crazy Option</label>
@@ -136,9 +158,10 @@
 
 
         <div class="form-container">
-          <h2>Question 2</h2>
+           <h2 class="text-center">Question 2</h2>
 
-           <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+           <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+              <h3>If you could choose a dog, what kind of dog would it be?</h3>
 
           <div class="box">
             <input type="radio" id="radio5" value="0" name="question2" required/>
@@ -160,10 +183,10 @@
 
 
         <div class="form-container">
-          <h2>Question 3</h2>
+           <h2 class="text-center">Question 3</h2>
 
-          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
+          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+          <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio9" value="0" name="question3" required/>
             <label for="radio9">Very Likely</label>
@@ -188,10 +211,10 @@
 
 
         <div class="form-container">
-          <h2>Question 4</h2>
+           <h2 class="text-center">Question 3</h2>
 
-          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
+          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+          <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio14" value="0" name="question4" required/>
             <label for="radio14">Very Likely</label>
@@ -213,10 +236,9 @@
 
 
         <div class="form-container">
-          <h2>Question 5</h2>
-
-          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
+           <h2 class="text-center">Question 5</h2>
+          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+           <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio18" value="0" name="question5" required/>
             <label for="radio18">Very Likely</label>
@@ -238,10 +260,10 @@
 
 
         <div class="form-container">
-          <h2>Question 6</h2>
+          <h2 class="text-center">Question 6</h2>
 
-          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
+          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+            <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio22" value="0" name="question6" required/>
             <label for="radio22">Very Likely</label>
@@ -263,10 +285,10 @@
 
 
         <div class="form-container">
-          <h2>Question 7</h2>
+           <h2 class="text-center">Question 7</h2>
 
-          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
+          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+          <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio26" value="0" name="question7" required/>
             <label for="radio26">Very Likely</label>
@@ -288,10 +310,10 @@
 
 
         <div class="form-container">
-          <h2>Question 8</h2>
+          <h2 class="text-center">Question 8</h2>
 
-          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
+          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+                     <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio30" value="0" name="question8" required/>
             <label for="radio30">Very Likely</label>
@@ -313,10 +335,10 @@
 
 
         <div class="form-container">
-          <h2>Question 9</h2>
+          <h2 class="text-center">Question 9</h2>
 
-          <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
+          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+            <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio34" value="0" name="question9" required/>
             <label for="radio34">Very Likely</label>
@@ -338,10 +360,10 @@
 
 
         <div class="form-container">
-          <h2>Question 10</h2>
+           <h2 class="text-center">Question 10</h2>
 
-            <img src={% static "bisonMatchApp/images/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-
+            <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+            <h3>If you could choose a dog, what kind of dog would it be?</h3>
           <div class="box">
             <input type="radio" id="radio38" value="0" name="question10" required/>
             <label for="radio38">Math</label>

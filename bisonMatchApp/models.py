@@ -12,8 +12,11 @@ class Lustudent(models.Model):
     name = models.CharField(db_column='Name', max_length=256)  # Field name made lowercase.
     lnumber = models.CharField(db_column='LNumber', max_length=255,primary_key = True)  # Field name made lowercase.
     emailaddress = models.CharField(db_column='EmailAddress', max_length=256)  # Field name made lowercase.
-    gender = models.CharField(db_column='Gender', max_length=256)  # Field name made lowercase.
+    major = models.CharField(db_column='Major', max_length=50)
     bio = models.CharField(db_column='Bio', max_length=256)  # Field name made lowercase.
+    idealdate = models.CharField(db_column='IdealDate', max_length=256)
+    gender = models.IntegerField(db_column='Gender')  # Field name made lowercase.
+    preference = models.IntegerField(db_column='Preference')
     ans1 = models.IntegerField(db_column='Ans1')  # Field name made lowercase.
     ans2 = models.IntegerField(db_column='Ans2')  # Field name made lowercase.
     ans3 = models.IntegerField(db_column='Ans3')  # Field name made lowercase.
@@ -24,11 +27,11 @@ class Lustudent(models.Model):
     ans8 = models.IntegerField(db_column='Ans8')  # Field name made lowercase.
     ans9 = models.IntegerField(db_column='Ans9')  # Field name made lowercase.
     ans10 = models.IntegerField(db_column='Ans10')  # Field name made lowercase.
-    profilepicurl = models.CharField(db_column='profilePicUrl', max_length=2083)  # Field name made lowercase.
-    paid = models.IntegerField(db_column="paid")
+    profilepicurl = models.CharField(db_column='ProfilePicUrl', max_length=2083)  # Field name made lowercase.
+    paid = models.IntegerField(db_column="Paid")
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'LUStudent'
 
 

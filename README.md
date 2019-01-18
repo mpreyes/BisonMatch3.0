@@ -7,16 +7,18 @@
 
     `pip3 install mysqlclient`
 
-(Possibly migrate the db, gotta check on this.)
-
 3. To run the development server:
 
     `python3 manage.py runserver`
 
-    If it is all correct,
 
-    127.0.0.1:8000/bisonMatch/about/ should show you the names currently in the db
 
+4. For the Database:
+    1. Create a new Database called BisonMatch3
+    2. In your migrations folder, you might have some files of the form 000*_initial.py. Delete those files before moving on. (Not the __init__.py file!)
+    3. `python3 manage.py makemigrations`
+    4. `python3 manage.py migrate`
+    5. Success! you now have our database schema in your test database.
 
 
 Notes:
