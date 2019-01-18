@@ -1,3 +1,82 @@
+#second_third {
+  display: none;
+}
+
+#third_third {
+  display: none;
+}
+
+/*
+Styling for the profile image upload
+and profile information form
+*/
+#profile-info-form {
+  display: none;
+}
+
+#large-buffer {
+  display: none;
+}
+
+.not-radio {
+  display: block;
+  cursor: default;
+  border: none;
+  padding: 25px 1% 0% 3%
+}
+
+.special-radio {
+  margin-right: 10%;
+}
+
+.text-input {
+  margin-left: 3%;
+}
+
+.textarea-input {
+  width: 93%;
+  margin-bottom: 10%;
+}
+
+.not-radio:before {
+  display: none;
+}
+
+.not-radio:after {
+  display: none;
+}
+
+.float-left {
+  display: inline-block;
+  width: 50%;
+  float:left;
+}
+
+.even-height {
+  min-height: 40vh;
+}
+
+.float-right {
+  display: inline-block;
+  width: 50%;
+  float:right;
+}
+
+.medium-btn {
+  display: block !important;
+  margin: 0 auto !important;
+  width: 130px !important;
+}
+
+@media (max-width: 575px) {
+  .even-height {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+}
+
+
 /*
 Progress bar
 */
@@ -95,11 +174,12 @@ input[type=radio] {
 }
 
 .form-container {
-  width: 80%;
+  width: 100%;
   background-color: white;
   margin: 8% auto;
   padding: 5%;
   padding-top: 0%;
+  padding-bottom: 16%;
   margin-top: 0%;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -107,7 +187,7 @@ input[type=radio] {
 
 .progress-bar-container {
   background-color: white;
-  width: 80%;
+  width: 100%;
   margin: 8% auto 0 auto;
   padding-bottom: 0;
   padding-top: 3%;
@@ -184,4 +264,11 @@ input:disabled + label:hover {
 input:disabled + label:before {
   border-color: white;
   background: white;
+}
+
+
+.small-txt {
+  font-size: 0.7em;
+  padding: 0 !important;
+  margin: 9% 0 0 25px !important;
 }
