@@ -44,25 +44,16 @@
   {% csrf_token %}
       {{ form.errors }}
 {{ form.non_field_errors }}
+
  <div class="form-group">
-    {{form}}
+
+  {{form}}
   </div>
   <button type="submit" class="btn btn-primary text-center">Submit</button>
 </form>
 
 </div>
 </div>
-
-
-    {% comment %} <form action="/profile/" method="POST">
-
-    <label for="your_name">Your name: </label>
-    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-    <input type="submit" value="OK">
-</form> {% endcomment %}
-
-
-
     <!-- Footer -->
     <footer class="footer text-center">
       <div class="container">

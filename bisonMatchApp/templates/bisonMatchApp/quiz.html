@@ -31,7 +31,6 @@
   </head>
 
   <body id="page-top">
-
            <div>
            here be ye form data:
                 {% for field in profile_info %}
@@ -40,7 +39,8 @@
           </div>
 
 
-    <form action="index.html" method="POST">
+    <form action="/bisonMatch/thanks/" method="POST">
+      {% csrf_token %}
       <div class="row no-container-row">
         <div class="col-lg-3 col-md-2 col-sm-0"></div>
 

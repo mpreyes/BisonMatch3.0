@@ -10,3 +10,13 @@ class ProfileForm(forms.Form):
     bio = forms.CharField(label="bio", max_length=256,
         widget=forms.Textarea(),
         help_text='Tell us about yourself!')  # Field name made lowercase. 
+
+
+class UploadImageForm(forms.Form):
+    #title = forms.CharField(max_length=50) optional, let users add a profile pic caption
+    file = forms.FileField()
+
+
+# class QuizForm(forms.Form):
+
+
