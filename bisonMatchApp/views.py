@@ -8,6 +8,8 @@ from django.db import connection
 
 from .models import Lustudent
 from .forms import ProfileForm, UploadImageForm
+from contextlib import closing
+from operator import itemgetter
 
 # Create your views here.
 
@@ -18,6 +20,64 @@ def about(request):
     LU_student = Lustudent.objects.values('name')
     context = {'LU_student': LU_student}
     return render(request, 'bisonMatchApp/about.html', context)
+
+def getAllMatches():
+    sql = "SELECT * FROM LUStudent WHERE paid = 0"
+    with closing(connection.cursor()) as cursor:
+        cursor = connection.cursor()
+        cursor.execute(sql)
+        students = cursor.fetchall()
+    connection.close()
+    for student in students:
+        getMatchesForStudent(student)
+    return
+
+def getPotentialMatchesAndPoints(student):
+    #student is male and prefers males match with males that like males or both
+    if student[6] == 0 and student[7] == 0:
+        sql = "SELECT * from LUStudent WHERE gender = 0 AND (preference = 0 OR preference = 2) AND lnumber != " + student[1]
+    #student is female and prefers females match with females that like females or both
+    elif student[6] == 1 and student[7] == 1:
+        sql = "SELECT * from LUStudent WHERE gender = 1 AND (preference = 1 OR preference = 2) AND lnumber != " + student[1]
+    #student is male and prefers both match anyone that like males or both 
+    elif student[6] == 0 and student[7] == 2:
+        sql = "SELECT * from LUStudent WHERE (preference = 0 OR preference = 2) AND lnumber != " + student[1] 
+    #student is female and prefers both match anyone that like females or both 
+    elif student[6] == 1 and student[7] == 2:
+        sql = "SELECT * from LUStudent WHERE (preference = 1 OR preference = 2) AND lnumber != " + student[1] 
+    #student is male and prefers females match with females that like males or both
+    elif student[6] == 0 and student[7] == 1:
+        sql = "SELECT * from LUStudent WHERE gender = 1 AND (preference = 0 OR preference = 2) AND lnumber != " + student[1]
+    #student is female and prefers males match with males that like females or both
+    elif student[6] == 1 and student[7] == 0:
+        sql = "SELECT * from LUStudent WHERE gender = 0 AND (preference = 1 OR preference = 2) AND lnumber != " + student[1]
+
+    with closing(connection.cursor()) as cursor:
+        cursor = connection.cursor()
+        cursor.execute(sql)
+        potentialStudents = cursor.fetchall()
+    connection.close()
+    pointedStudents = []
+    for potentialStudent in potentialStudents:
+        points = 0
+        for q in range(8, 18):
+            if student[q] == potentialStudent[q]:
+                points += 1
+        pointedStudents.append({'name': potentialStudent[0], 'emailaddress': potentialStudent[2], 'major': potentialStudent[3], 'bio': potentialStudent[4], 'idealdate': potentialStudent[5], 'points': points})
+
+    return pointedStudents
+
+def getMatchesForStudent(student):
+    pointedStudents = getPotentialMatchesAndPoints(student)
+    sortedStudents = sorted(pointedStudents, key=itemgetter('points'), reverse=True)
+    finalResults = sortedStudents[0:5]
+    #send email
+    return
+
+def mapTupleToStudentDictionary(student):
+    keys = ['name', 'lnumber', 'emailaddress', 'major', 'bio', 'idealdate', 'gender', 'preference', 'ans1', 'ans2', 'ans3', 'ans4', 'ans5', 'ans6', 'ans7', 'ans8', 'ans9', 'ans10', 'profilepicurl', 'paid']
+    student = [dict(zip(keys, s)) for s in student]
+    return student
 
 def quiz(request):
     if request.method == 'POST':
