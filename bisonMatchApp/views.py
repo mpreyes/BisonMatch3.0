@@ -23,14 +23,17 @@ def about(request):
 
 def getAllMatches():
     sql = "SELECT * FROM LUStudent WHERE paid = 0"
+    allMatches = []
     with closing(connection.cursor()) as cursor:
         cursor = connection.cursor()
         cursor.execute(sql)
         students = cursor.fetchall()
     connection.close()
     for student in students:
-        getMatchesForStudent(student)
-    return
+        m = getMatchesForStudent(student)
+        student = mapTupleToStudentDictionary(student)
+        allMatches.append({'student': student, 'matches': m})
+    return allMatches
 
 def getPotentialMatchesAndPoints(student):
     #student is male and prefers males match with males that like males or both
@@ -62,8 +65,8 @@ def getPotentialMatchesAndPoints(student):
         points = 0
         for q in range(8, 18):
             if student[q] == potentialStudent[q]:
-                points += 1
-        pointedStudents.append({'name': potentialStudent[0], 'emailaddress': potentialStudent[2], 'major': potentialStudent[3], 'bio': potentialStudent[4], 'idealdate': potentialStudent[5], 'points': points})
+                points += 10
+        pointedStudents.append({'name': potentialStudent[0], 'emailaddress': potentialStudent[2], 'major': potentialStudent[3], 'bio': potentialStudent[4], 'idealdate': potentialStudent[5], 'profilepicurl': potentialStudent[18], 'points': points})
 
     return pointedStudents
 
@@ -71,8 +74,7 @@ def getMatchesForStudent(student):
     pointedStudents = getPotentialMatchesAndPoints(student)
     sortedStudents = sorted(pointedStudents, key=itemgetter('points'), reverse=True)
     finalResults = sortedStudents[0:5]
-    #send email
-    return
+    return finalResults
 
 def mapTupleToStudentDictionary(student):
     keys = ['name', 'lnumber', 'emailaddress', 'major', 'bio', 'idealdate', 'gender', 'preference', 'ans1', 'ans2', 'ans3', 'ans4', 'ans5', 'ans6', 'ans7', 'ans8', 'ans9', 'ans10', 'profilepicurl', 'paid']
