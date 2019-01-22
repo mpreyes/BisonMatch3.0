@@ -19,7 +19,6 @@ def about(request):
     context = {'LU_student': LU_student}
     return render(request, 'bisonMatchApp/about.html', context)
 
-
 def quiz(request):
     if request.method == 'POST':
         print("Processing post...")
@@ -63,7 +62,6 @@ def quiz(request):
 def thanks(request):
     #sendResult('reyes.madelyn.mr@gmail.com','results')
     return render(request, 'bisonMatchApp/thanks.html')
-
 
 
 def sendResult(emailAddress, results):  #run this function to send an email to our users
