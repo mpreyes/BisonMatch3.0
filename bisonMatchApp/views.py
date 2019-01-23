@@ -6,10 +6,13 @@ from django.core.mail import send_mail
 from django.template import loader
 from django.db import connection
 
-from .models import Lustudent
+from .models import Lustudent, ImageUpload
 from .forms import ProfileForm, UploadImageForm
 from contextlib import closing
 from operator import itemgetter
+
+import base64
+from django.core.files.base import ContentFile
 
 # Create your views here.
 
@@ -42,12 +45,12 @@ def getPotentialMatchesAndPoints(student):
     #student is female and prefers females match with females that like females or both
     elif student[6] == 1 and student[7] == 1:
         sql = "SELECT * from LUStudent WHERE gender = 1 AND (preference = 1 OR preference = 2) AND lnumber != " + student[1]
-    #student is male and prefers both match anyone that like males or both 
+    #student is male and prefers both match anyone that like males or both
     elif student[6] == 0 and student[7] == 2:
-        sql = "SELECT * from LUStudent WHERE (preference = 0 OR preference = 2) AND lnumber != " + student[1] 
-    #student is female and prefers both match anyone that like females or both 
+        sql = "SELECT * from LUStudent WHERE (preference = 0 OR preference = 2) AND lnumber != " + student[1]
+    #student is female and prefers both match anyone that like females or both
     elif student[6] == 1 and student[7] == 2:
-        sql = "SELECT * from LUStudent WHERE (preference = 1 OR preference = 2) AND lnumber != " + student[1] 
+        sql = "SELECT * from LUStudent WHERE (preference = 1 OR preference = 2) AND lnumber != " + student[1]
     #student is male and prefers females match with females that like males or both
     elif student[6] == 0 and student[7] == 1:
         sql = "SELECT * from LUStudent WHERE gender = 1 AND (preference = 0 OR preference = 2) AND lnumber != " + student[1]
@@ -88,6 +91,20 @@ def quiz(request):
         for key, value in request.POST.items():
             print('{} => {}'.format(key, value))
 
+        image_data = request.POST["image_data"]
+        format, imgstr = image_data.split(';base64,')
+        print("format", format)
+        ext = format.split('/')[-1]
+        MEDIA_ROOT = "/media/user_profiles/"
+
+        file_name = str(request.POST["l-number"]) + "." + ext
+        image = ContentFile(base64.b64decode(imgstr))
+        document = ImageUpload()
+        document.media.save(file_name, image)
+        document.save()
+
+        image_file_path = MEDIA_ROOT + file_name
+
         sql = "INSERT INTO lustudent VALUES ("
         sql += "'" + request.POST["name"] + "', "
         sql += "'" + request.POST["l-number"] + "', "
@@ -96,7 +113,6 @@ def quiz(request):
         sql += "'" + request.POST["bio"] + "', "
         sql += "'" + request.POST["idealdate"] + "', "
         sql += "'" + request.POST["gender"] + "', "
-        sql += "'" + request.POST["preference"] + "', "
         sql += request.POST["question1"] + ", "
         sql += request.POST["question2"] + ", "
         sql += request.POST["question3"] + ", "
@@ -107,11 +123,7 @@ def quiz(request):
         sql += request.POST["question8"] + ", "
         sql += request.POST["question9"] + ", "
         sql += request.POST["question10"] + ", "
-
-        #===========================================
-        # TODO implement profile picture url
-        #===========================================
-        sql += "'dummyurl.png', "
+        sql += "'" + image_file_path + "', "
         sql += "0);"
 
         cursor = connection.cursor()
@@ -124,6 +136,10 @@ def quiz(request):
 def thanks(request):
     #sendResult('reyes.madelyn.mr@gmail.com','results')
     return render(request, 'bisonMatchApp/thanks.html')
+
+def matches(request):
+    print(request.GET.slug)
+    return None
 
 
 def sendResult(emailAddress, results):  #run this function to send an email to our users

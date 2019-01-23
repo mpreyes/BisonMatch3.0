@@ -168,3 +168,49 @@ function edit_info_form() {
   let otherParent = document.getElementById("questions-container");
   otherParent.style.display = "none";
 }
+
+
+// ========================================================================
+// These two functions handle the profile photo upload stuff...
+// ========================================================================
+function uploadPhoto() {
+  document.getElementById("image-upload-button").click();
+}
+
+document.getElementById("image-upload-button").onchange = function () {
+    let reader = new FileReader();
+    let image = document.getElementById("profile-image");
+    let default_icon = document.getElementById("profile-default-image");
+    let overlay = document.getElementById("croppie-overlay");
+    let btn = document.getElementById("submit-crop");
+    let form = document.getElementById("dummy");
+
+    overlay.style.display = "block";
+    let el = document.getElementById("croppie");
+    var croppie = new Croppie(el,
+    {
+      viewport: { width: 256, height: 256, type: 'circle' },
+      showZoomer: true
+    });
+
+    btn.addEventListener("click", function() {
+      croppie.result('base64').then(function(resp) {
+        image.src = resp;
+        form.value = resp;
+      });
+      croppie.destroy();
+      overlay.style.display = "none";
+    });
+
+    reader.onload = function (e) {
+        default_icon.style.display = "none";
+        image.style.display = "inline-block";
+
+        croppie.bind({
+            url: e.target.result,
+        });
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};

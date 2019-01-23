@@ -2,6 +2,13 @@
 {% load static %}
 
 {% block content %}
+  <div class="overlay" id="croppie-overlay">
+    <div id="croppie"></div>
+
+    <a id="submit-crop" class="btn btn-primary medium-button">Submit Crop</a>
+  </div>
+
+
   <form action="" method="POST" name="form">
     {% csrf_token %}
     <div class="row no-container-row">
@@ -14,8 +21,11 @@
 
       <div class="col-lg-6 col-md-8 col-sm-10 col-10 card" id="profile-image-upload-form">
 
-        <div class="profile-photo" onclick="someFunctionToUploadPhoto()">
-          <i class="fas fa-user"></i>
+        <input type="text" name="image_data" style="display: none;" id="dummy" />
+        <input type="file" name="image_upload" id="image-upload-button" accept="image/*"/>
+        <div class="profile-photo" onclick="uploadPhoto()">
+          <i class="fas fa-user" id="profile-default-image"></i>
+          <img class="fluid-image" id="profile-image"></img>
         </div>
 
         <h4 class="instructions">Upload a photo to continue</h4>
@@ -55,18 +65,6 @@
           <label class="special-radio" for="radio101">Female</label>
         </div>
 
-                    
-    <div class="float-right even-height"> 
-          <label class="not-radio">*Preference: </label>
-          <input type="radio" id="radio200" value="0" name="preference" required/>
-          <label class="special-radio" for="radio200">Male</label>
-          <input type="radio" id="radio201" value="1" name="preference"/>
-          <label class="special-radio" for="radio201">Female</label>
-                    <input type="radio" id="radio202" value="2" name="preference"/>
-          <label class="special-radio" for="radio202">Both</label>
-        </div>
-
-
         <label class="not-radio no-float">Bio: </label>
         <textarea class="text-input textarea-input" name="bio"></textarea>
 
@@ -74,7 +72,7 @@
         <textarea class="text-input textarea-input" name="idealdate"></textarea>
 
 
-  
+
 
         <div class="float-left">
           <a href="#" class="btn btn-primary medium-btn" onclick="show_image_upload_form()">Previous</a>

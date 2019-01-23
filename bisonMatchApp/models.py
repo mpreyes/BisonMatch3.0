@@ -143,3 +143,6 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+class ImageUpload(models.Model):
+    media = models.FileField(upload_to="user_profiles")

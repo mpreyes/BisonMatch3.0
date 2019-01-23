@@ -6,6 +6,10 @@
   display: none;
 }
 
+#image-upload-button {
+  display: none;
+}
+
 /*
 Styling for the profile image upload
 and profile information form
