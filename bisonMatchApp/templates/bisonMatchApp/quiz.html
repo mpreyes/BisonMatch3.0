@@ -19,7 +19,7 @@
       <!-- Profile Image upload 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-8 col-sm-10 col-10 card" id="profile-image-upload-form">
+      <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard" id="profile-image-upload-form">
 
         <input type="text" name="image_data" style="display: none;" id="dummy" />
         <input type="file" name="image_upload" id="image-upload-button" accept="image/*"/>
@@ -28,10 +28,16 @@
           <img class="fluid-image" id="profile-image"></img>
         </div>
 
-        <h4 class="instructions">Upload a photo to continue</h4>
-        <p>Please try to choose a square photo to avoid your photo looking squashed or stretched.</p>
+        <h4 class="instructions">Upload a photo</h4>
+        <p>A photo is not required. However, having a photo will greatly increase your chances of getting matches to contact you.</p>
 
-        <a href="#" class="btn btn-primary medium-btn" onclick="next_profile_form()">Continue</a>
+        <div class="float-left">
+          <a href="#" onclick="uploadPhoto()" class="btn btn-primary medium-btn">Upload</a>
+        </div>
+
+        <div class="float-right">
+          <a href="#" class="btn btn-primary medium-btn" onclick="next_profile_form()">Continue</a>
+        </div>
       </div>
 
 

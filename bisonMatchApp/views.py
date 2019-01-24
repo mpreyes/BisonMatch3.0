@@ -35,7 +35,7 @@ def getAllMatches():
         m = getMatchesForStudent(student) # list of dictionaries with lnumber and percent
         studentlnum = student(1) #lnum of student the matches are for
         #TODO POST student results to db by calling matchResults
-    
+
     return
 
 def getPotentialMatchesAndPoints(student):
@@ -91,21 +91,22 @@ def quiz(request):
         print("Processing post...")
         # Check in the terminal for how the session variables are coming in...
         for key, value in request.POST.items():
-            print('{} => {}'.format(key, value))
+            if key != "image_data":
+                print('{} => {}'.format(key, value))
 
-        image_data = request.POST["image_data"]
-        format, imgstr = image_data.split(';base64,')
-        print("format", format)
-        ext = format.split('/')[-1]
         MEDIA_ROOT = "/media/user_profiles/"
-
-        file_name = str(request.POST["l-number"]) + "." + ext
-        image = ContentFile(base64.b64decode(imgstr))
-        document = ImageUpload()
-        document.media.save(file_name, image)
-        document.save()
-
-        image_file_path = MEDIA_ROOT + file_name
+        if request.POST["image_data"] != "":
+            image_data = request.POST["image_data"]
+            format, imgstr = image_data.split(';base64,')
+            ext = format.split('/')[-1]
+            file_name = str(request.POST["l-number"]) + "." + ext
+            image = ContentFile(base64.b64decode(imgstr))
+            document = ImageUpload()
+            document.media.save(file_name, image)
+            document.save()
+            image_file_path = MEDIA_ROOT + file_name
+        else:
+            image_file_path = MEDIA_ROOT + "bisonMatchDefault.png"
 
         sql = "INSERT INTO lustudent VALUES ("
         sql += "'" + request.POST["name"] + "', "
@@ -127,18 +128,14 @@ def quiz(request):
         sql += request.POST["question10"] + ", "
         sql += "'" + image_file_path + "', "
         sql += "0);"
-        
+
 
         #TODO Consider replacing the below to lines with the following
-        #with closing(connection.cursor()) as cursor:
-        #    cursor = connection.cursor()
-        #    cursor.execute(sql)
-        #    students = cursor.fetchall()
-        #connection.close()
+        with closing(connection.cursor()) as cursor:
+            cursor = connection.cursor()
+            cursor.execute(sql)
+        connection.close()
         #This ensures that both the cursor and the connection are closed
-
-        cursor = connection.cursor()
-        cursor.execute(sql)
 
         return HttpResponseRedirect('/bisonMatch/thanks/')
     else:
@@ -148,9 +145,9 @@ def thanks(request):
     #sendResult('reyes.madelyn.mr@gmail.com','results')
     return render(request, 'bisonMatchApp/thanks.html')
 
-def matches(request):
-    print(request.GET.slug)
-    return None
+def matches(request, slug):
+
+    return render(request, 'bisonMatchApp/thanks.html')
 
 def sendResult(emailAddress, results):  #run this function to send an email to our users
     html_message = loader.render_to_string('bisonMatchApp/results_email.html', {'name': results})

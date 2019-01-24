@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import include, url
 
 from . import views
 
@@ -7,5 +8,5 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('quiz/', views.quiz, name='quiz'),
     path('thanks/', views.thanks, name="thanks"),
-    path('matches/<slug:slug>/', views.matches, name="matches")
+    url(r'^matches/(?P<slug>[-\w]+)/$', views.matches)
 ]

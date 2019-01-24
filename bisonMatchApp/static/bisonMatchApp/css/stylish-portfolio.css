@@ -4,10 +4,10 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-stylish-portfolio/blob/master/LICENSE)
  */
 
- /* 
- 
+ /*
+
  Here be ye global Css settings
- 
+
  */
 
 body,
@@ -319,7 +319,7 @@ footer.footer .social-link {
   width: 4rem;
   line-height: 4.3rem;
   font-size: 1.5rem;
-  background-color: #fa8072;
+  background-color: #FFC0CB;
   -webkit-transition: background-color 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out;
   -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
@@ -340,7 +340,7 @@ a:hover, a:focus, a:active {
 }
 
 .btn-primary {
-  background-color: #fa8072 !important;
+  background-color: #FFC0CB !important;
   border: none !important;
   color: #fff !important;
 }
