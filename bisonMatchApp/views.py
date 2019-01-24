@@ -32,7 +32,8 @@ def getAllMatches():
         students = cursor.fetchall()
     connection.close()
     for student in students:
-        m = getMatchesForStudent(student)
+        m = getMatchesForStudent(student) # list of dictionaries with lnumber and percent
+        studentlnum = student(1) #lnum of student the matches are for
         #TODO POST student results to db by calling matchResults
     
     return
