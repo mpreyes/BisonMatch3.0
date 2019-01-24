@@ -125,7 +125,16 @@ def quiz(request):
         sql += request.POST["question10"] + ", "
         sql += "'" + image_file_path + "', "
         sql += "0);"
+        
 
+        #TODO Consider replacing the below to lines with the following
+        #with closing(connection.cursor()) as cursor:
+        #    cursor = connection.cursor()
+        #    cursor.execute(sql)
+        #    students = cursor.fetchall()
+        #connection.close()
+        #This ensures that both the cursor and the connection are closed
+        
         cursor = connection.cursor()
         cursor.execute(sql)
 
@@ -140,7 +149,6 @@ def thanks(request):
 def matches(request):
     print(request.GET.slug)
     return None
-
 
 def sendResult(emailAddress, results):  #run this function to send an email to our users
     html_message = loader.render_to_string('bisonMatchApp/results_email.html', {'name': results})

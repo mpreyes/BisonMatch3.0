@@ -16,7 +16,6 @@ class Lustudent(models.Model):
     bio = models.CharField(db_column='Bio', max_length=256)  # Field name made lowercase.
     idealdate = models.CharField(db_column='IdealDate', max_length=256)
     gender = models.IntegerField(db_column='Gender')  # Field name made lowercase.
-    preference = models.IntegerField(db_column='Preference')
     ans1 = models.IntegerField(db_column='Ans1')  # Field name made lowercase.
     ans2 = models.IntegerField(db_column='Ans2')  # Field name made lowercase.
     ans3 = models.IntegerField(db_column='Ans3')  # Field name made lowercase.
@@ -33,6 +32,15 @@ class Lustudent(models.Model):
     class Meta:
         managed = True
         db_table = 'LUStudent'
+
+class StudentMatches(models.Model):
+    id = models.AutoField(db_column='ID', primary_key = True)
+    studentlnumber = models.CharField(db_column='StudentLNumber', max_length=255)
+    matchlnumber = models.CharField(db_column='MatchLNumber', max_length=255)
+
+    class Meta:
+        managed = True
+        db_table = 'StudentMatches'
 
 
 class AuthGroup(models.Model):
