@@ -105,6 +105,7 @@ def getStudentData(lnumber):
 def matches(request, slug):
     matchLNumbers = []
     percentages = []
+    paid = 0
 
     with closing(connection.cursor()) as cursor:
         cursor = connection.cursor()
@@ -114,7 +115,14 @@ def matches(request, slug):
             matchLNumbers.append(object[1])
             percentages.append(object[2])
     connection.close()
-    print(percentages)
+
+    with closing(connection.cursor()) as cursor:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM `lustudent` where `lnumber` = " + str(slug) + ";")
+        res = cursor.fetchone()
+        print(res)
+        paid = res[-1]
+    connection.close()
 
     matches = []
     i = 0
@@ -122,9 +130,7 @@ def matches(request, slug):
         matches.append(list(getStudentData(lnumber)) + [percentages[i]])
         i += 1
 
-    print(matches[0])
-
-    return render(request, 'bisonMatchApp/matches.html', {"matches" : matches})
+    return render(request, 'bisonMatchApp/matches.html', {"matches" : matches, "paid" : paid})
 
 
 def sendResult(emailAddress, results):  #run this function to send an email to our users

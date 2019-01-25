@@ -3,31 +3,54 @@
 
 {% block content %}
 
-<div class="row no-container-row">
+  {% if paid == 1 %}
+    <div class="row no-container-row">
 
-  {% for match in matches %}
-    <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+      {% for match in matches %}
+        <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
 
-    <!--=============================================================================================================-->
-    <!-- Profile viewing
-    <!--=============================================================================================================-->
+        <!--=============================================================================================================-->
+        <!-- Profile viewing
+        <!--=============================================================================================================-->
 
-    <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard" id="profile-image-upload-form">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard" id="profile-image-upload-form">
 
-      <div class="profile-photo">
-        <img class="fluid-image" id="profile-image" src="{{match.17}}" style="display: inline-block;"></img>
-      </div>
+          <div class="profile-photo">
+            <img class="fluid-image" id="profile-image" src="{{match.17}}" style="display: inline-block;"></img>
+          </div>
 
-      <h4 class="instructions">{{ match.0 }}</h4>
-      <p><b>Major:</b> {{match.3}}</p>
-      <p><b>Bio:</b> {{ match.4 }}</p>
-      <p><b>Ideal Date:</b> {{match.5}}</p>
-      <p><b>Percentage Matched:</b> {{match.19}}%</p>
+          <h4 class="instructions">{{ match.0 }}</h4>
+          <p><b>Major:</b> {{match.3}}</p>
+          <p><b>Bio:</b> {{ match.4 }}</p>
+          <p><b>Ideal Date:</b> {{match.5}}</p>
+          <p><b>Percentage Matched:</b> {{match.19}}%</p>
+        </div>
+
+        <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+
+      {% endfor %}
     </div>
 
-    <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+  {% else %}
+    <div class="row no-container-row">
+        <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
 
-  {% endfor %}
-</div>
+        <!--=============================================================================================================-->
+        <!-- Profile viewing
+        <!--=============================================================================================================-->
+
+        <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard" id="profile-image-upload-form">
+
+          <div class="profile-photo" style="cursor: default;">
+            <i class="fas fa-user" id="profile-default-image"></i>
+          </div>
+
+          <h4 class="instructions">Oops!</h4>
+          <p>Looks like you haven't paid. We can't show you your matches until you do. The deadline is ...</p>
+        </div>
+
+        <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+    </div>
+  {% endif %}
 
 {% endblock %}
