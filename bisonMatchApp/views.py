@@ -9,7 +9,6 @@ from django.db import connection
 from .models import Lustudent, ImageUpload
 from .forms import ProfileForm, UploadImageForm
 from contextlib import closing
-from operator import itemgetter
 
 import base64
 from django.core.files.base import ContentFile
@@ -23,63 +22,6 @@ def about(request):
     LU_student = Lustudent.objects.values('name')
     context = {'LU_student': LU_student}
     return render(request, 'bisonMatchApp/about.html', context)
-
-def getAllMatches():
-    sql = "SELECT * FROM LUStudent WHERE paid = 0"
-    with closing(connection.cursor()) as cursor:
-        cursor = connection.cursor()
-        cursor.execute(sql)
-        students = cursor.fetchall()
-    connection.close()
-    for student in students:
-        m = getMatchesForStudent(student) # list of dictionaries with lnumber and percent
-        studentlnum = student(1) #lnum of student the matches are for
-        #TODO POST student results to db by calling matchResults
-    
-    return
-
-def getPotentialMatchesAndPoints(student):
-    totalQuestions = 10
-    #student is male(0) get female(1) matches
-    if student[6] == 0:
-        sql = "SELECT * from LUStudent WHERE gender = 1"
-    #student is female(1) get male(0) matches
-    elif student[6] == 1:
-        sql = "SELECT * from LUStudent WHERE gender = 0"
-    #student is undefined(2) get all students
-    elif student[6] == 2:
-        sql = "SELECT * from LUStudent WHERE lnumber != " + student[1]
-
-    with closing(connection.cursor()) as cursor:
-        cursor = connection.cursor()
-        cursor.execute(sql)
-        potentialStudents = cursor.fetchall()
-    connection.close()
-
-    pointedStudents = []
-    for potentialStudent in potentialStudents:
-        points = 0
-        for q in range(7, 17):
-            if student[q] == potentialStudent[q]:
-                points += 1
-        percent = (points/totalQuestions) * 100
-        pointedStudents.append({'lnumber': potentialStudent[1], 'percent': percent})
-
-    return pointedStudents
-
-def getMatchesForStudent(student):
-    numMatches = 10
-    pointedStudents = getPotentialMatchesAndPoints(student)
-    sortedStudents = sorted(pointedStudents, key=itemgetter('percent'), reverse=True)
-    finalMatches = sortedStudents[0:numMatches]
-    return finalMatches
-
-def matchResults(request):
-    #TODO how to POST???
-    if request.method =='POST':
-        print("Processing post...")
-        # Check in the terminal for how the session variables are coming in...
-    return
 
 def mapTupleToStudentDictionary(student):
     keys = ['name', 'lnumber', 'emailaddress', 'major', 'bio', 'idealdate', 'gender', 'preference', 'ans1', 'ans2', 'ans3', 'ans4', 'ans5', 'ans6', 'ans7', 'ans8', 'ans9', 'ans10', 'profilepicurl', 'paid']
