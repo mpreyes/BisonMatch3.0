@@ -21,15 +21,19 @@
 
 
 
-.card {
+.mycard {
+  background-color: white;
   padding: 5% 0;
 }
 
-.card h4 {
+.mycard h4 {
   padding-top: 10%;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 
-.card p {
+.mycard p {
   width: 80%;
   margin: 0 auto;
   padding-bottom: 10%;

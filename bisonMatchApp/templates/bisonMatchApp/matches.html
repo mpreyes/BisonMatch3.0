@@ -1,0 +1,33 @@
+{% extends './default.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row no-container-row">
+
+  {% for match in matches %}
+    <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+
+    <!--=============================================================================================================-->
+    <!-- Profile viewing
+    <!--=============================================================================================================-->
+
+    <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard" id="profile-image-upload-form">
+
+      <div class="profile-photo">
+        <img class="fluid-image" id="profile-image" src="{{match.17}}" style="display: inline-block;"></img>
+      </div>
+
+      <h4 class="instructions">{{ match.0 }}</h4>
+      <p><b>Major:</b> {{match.3}}</p>
+      <p><b>Bio:</b> {{ match.4 }}</p>
+      <p><b>Ideal Date:</b> {{match.5}}</p>
+      <p><b>Percentage Matched:</b> {{match.19}}% !</p>
+    </div>
+
+    <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

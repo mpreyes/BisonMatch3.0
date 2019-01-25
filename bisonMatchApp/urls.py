@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf.urls import include, url
+from django.conf import settings
 
 from . import views
 
@@ -7,5 +9,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('quiz/', views.quiz, name='quiz'),
     path('thanks/', views.thanks, name="thanks"),
-    path('matches/<slug:slug>/', views.matches, name="matches")
+    path('payment_success/', views.thanks, name="payment_success"),
+    url(r'^matches/(?P<slug>[-\w]+)/$', views.matches)
 ]

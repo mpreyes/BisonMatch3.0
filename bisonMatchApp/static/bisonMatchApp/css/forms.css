@@ -156,7 +156,7 @@ Progress bar
 }
 
 .no-container-row {
-  background-color: #fa8072;
+  background-color: #FFC0CB;
   overflow-x: hidden;
   margin: 0;
 }
@@ -213,9 +213,12 @@ input[type=radio] {
 /**
  * Make those labels sexy
  */
+
+.label-bold {
+  font-weight: bold;
+}
 label {
   font-size: 1rem;
-  font-weight: bold;
   line-height: 1;
   cursor: pointer;
   display: block;
