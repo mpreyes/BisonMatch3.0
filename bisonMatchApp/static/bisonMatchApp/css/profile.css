@@ -24,6 +24,7 @@
 .mycard {
   background-color: white;
   padding: 5% 0;
+  border-bottom: 1px solid #ddd;
 }
 
 .mycard h4 {
@@ -36,7 +37,10 @@
 .mycard p {
   width: 80%;
   margin: 0 auto;
-  padding-bottom: 10%;
+}
+
+.mycard img {
+  cursor: default !important;
 }
 
 .instructions {
