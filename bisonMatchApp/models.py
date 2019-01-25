@@ -33,6 +33,16 @@ class Lustudent(models.Model):
         managed = True
         db_table = 'LUStudent'
 
+class StudentMatches(models.Model):
+    id = models.AutoField(db_column='ID', primary_key = True)
+    studentlnumber = models.CharField(db_column='StudentLNumber', max_length=255)
+    matchlnumber = models.CharField(db_column='MatchLNumber', max_length=255)
+    percent = models.IntegerField(db_column='Percent')
+
+    class Meta:
+        managed = True
+        db_table = 'StudentMatches'
+
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)

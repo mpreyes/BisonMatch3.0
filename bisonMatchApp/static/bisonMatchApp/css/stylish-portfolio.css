@@ -4,11 +4,31 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-stylish-portfolio/blob/master/LICENSE)
  */
 
- /* 
- 
+ /*
+
  Here be ye global Css settings
- 
+
  */
+
+
+
+
+ /*
+
+Had to set width and height as fixed values, as we need all images to have the same size.
+ */
+
+.quiz-img {
+
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  width:  500px;
+  height: 400px;
+  background-position: 50% 50%;
+}
+
 
 body,
 html {
@@ -42,10 +62,14 @@ body {
 h1,
 h2,
 h3,
-h4,
 h5,
 h6 {
   font-weight: 700;
+}
+
+/* changed font weigth for h4 */
+h4 {  
+ font-weight: 500;
 }
 
 .text-faded {
@@ -319,7 +343,7 @@ footer.footer .social-link {
   width: 4rem;
   line-height: 4.3rem;
   font-size: 1.5rem;
-  background-color: #fa8072;
+  background-color: #FFC0CB;
   -webkit-transition: background-color 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out;
   -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
@@ -340,7 +364,7 @@ a:hover, a:focus, a:active {
 }
 
 .btn-primary {
-  background-color: #fa8072 !important;
+  background-color: #FFC0CB !important;
   border: none !important;
   color: #fff !important;
 }

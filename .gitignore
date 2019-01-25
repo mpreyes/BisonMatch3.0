@@ -5,3 +5,6 @@
 /bisonMatchApp/__pycache__/*.pyc
 
 settings.py 
+
+/media/
+/user_profiles/

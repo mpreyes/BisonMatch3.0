@@ -19,7 +19,7 @@
       <!-- Profile Image upload 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-8 col-sm-10 col-10 card" id="profile-image-upload-form">
+      <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard" id="profile-image-upload-form">
 
         <input type="text" name="image_data" style="display: none;" id="dummy" />
         <input type="file" name="image_upload" id="image-upload-button" accept="image/*"/>
@@ -28,10 +28,16 @@
           <img class="fluid-image" id="profile-image"></img>
         </div>
 
-        <h4 class="instructions">Upload a photo to continue</h4>
-        <p>Please try to choose a square photo to avoid your photo looking squashed or stretched.</p>
+        <h4 class="instructions label-bold">Upload a photo</h4>
+        <p class="text-center">A photo is not required. However, having a photo will greatly increase your chances of getting matches to contact you.</p>
 
-        <a href="#" class="btn btn-primary medium-btn" onclick="next_profile_form()">Continue</a>
+        <div class="float-left">
+          <a href="#" onclick="uploadPhoto()" class="btn btn-primary medium-btn">Upload</a>
+        </div>
+
+        <div class="float-right">
+          <a href="#" class="btn btn-primary medium-btn" onclick="next_profile_form()">Continue</a>
+        </div>
       </div>
 
 
@@ -42,35 +48,35 @@
 
       <div class="col-lg-6 col-md-6 col-sm-10 col-10 card" id="profile-info-form">
         <div class="float-left even-height">
-          <label class="not-radio">*Name: </label>
+          <label class="not-radio label-bold">*Name: </label>
           <input type="text" class="text-input" name="name" required></input>
 
-          <label class="not-radio">*L-Number: </label>
+          <label class="not-radio label-bold">*L-Number: </label>
           <input type="text" class="text-input" name="l-number" required></input>
 
-          <label class="not-radio">*Email Address: </label>
+          <label class="not-radio label-bold">*Email Address: </label>
           <input type="text" class="text-input" name="email" required></input>
 
-          <label class="not-radio">*Major: </label>
+          <label class="not-radio label-bold">*Major: </label>
           <input type="text" class="text-input" name="major" required></input>
 
 
         </div>
 
         <div class="float-right even-height">
-          <label class="not-radio">*Gender: </label>
+          <label class="not-radio label-bold">*Gender: </label>
           <input type="radio" id="radio100" value="0" name="gender" required/>
           <label class="special-radio" for="radio100">Male</label>
           <input type="radio" id="radio101" value="1" name="gender"/>
           <label class="special-radio" for="radio101">Female</label>
-                    <input type="radio" id="radio102" value="2" name="gender"/>
-          <label class="special-radio" for="radio102">Undefined</label>
+          <input type="radio" id="radio101" value="2" name="gender"/>
+          <label class="special-radio" for="radio101">Undefined</label>
         </div>
 
-        <label class="not-radio no-float">Bio: </label>
+        <label class="not-radio no-float label-bold">Bio: </label>
         <textarea class="text-input textarea-input" name="bio"></textarea>
 
-          <label class="not-radio no-float">Describe Your Ideal Date: </label>
+          <label class="not-radio no-float label-bold">Describe Your Ideal Date: </label>
         <textarea class="text-input textarea-input" name="idealdate"></textarea>
 
 
@@ -136,21 +142,21 @@
         <div class="form-container active">
           <h2 class="text-center">Question 1</h2>
 
-          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
+          <img src={% static "bisonMatchApp/img/date.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
 
-           <h3>If you could choose a dog, what kind of dog would it be?</h3>
+           <h4 class="text-center">You’re on a first date. Everything is going fine, except that _________, which is really bothersome.</h4>
           <div class="box">
             <input type="radio" id="radio1" value="0" name="question1" required/>
-            <label for="radio1">Crazy Option</label>
+            <label for="radio1"> They showed up 20 minutes late. </label>
 
             <input type="radio" id="radio2" value="1" name="question1"/>
-            <label for="radio2">Freaky Option</label>
+            <label for="radio2">They are a little too flirty.</label>
 
             <input type="radio" id="radio3" value="2" name="question1"/>
-            <label for="radio3">Cat Option</label>
+            <label for="radio3">They are obviously nervous and don’t know what to talk about.</label>
 
             <input type="radio" id="radio4" value="3" name="question1"/>
-            <label for="radio4">Final Option</label>
+            <label for="radio4">They ask you how many kids you’d want someday.</label>
           </div>
 
           <div class="float-left"><a class="btn btn-primary medium-btn" onclick="edit_info_form()">Previous</a></div>
@@ -162,8 +168,8 @@
         <div class="form-container">
            <h2 class="text-center">Question 2</h2>
 
-           <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-              <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/date.gif" %} class="quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">You’re on a first date. Everything is going fine, except that _________, which is really bothersome.</h4>
 
           <div class="box">
             <input type="radio" id="radio5" value="0" name="question2" required/>
@@ -187,8 +193,9 @@
         <div class="form-container">
            <h2 class="text-center">Question 3</h2>
 
-          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-          <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/date.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">You’re on a first date. Everything is going fine, except that _________, which is really bothersome.</h4>
+
           <div class="box">
             <input type="radio" id="radio9" value="0" name="question3" required/>
             <label for="radio9">Very Likely</label>
@@ -213,10 +220,11 @@
 
 
         <div class="form-container">
-           <h2 class="text-center">Question 3</h2>
+           <h2 class="text-center">Question 4</h2>
 
-          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-          <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/date.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">You’re on a first date. Everything is going fine, except that _________, which is really bothersome.</h4>
+
           <div class="box">
             <input type="radio" id="radio14" value="0" name="question4" required/>
             <label for="radio14">Very Likely</label>
@@ -239,8 +247,9 @@
 
         <div class="form-container">
            <h2 class="text-center">Question 5</h2>
-          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-           <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/date.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">You’re on a first date. Everything is going fine, except that _________, which is really bothersome.</h4>
+
           <div class="box">
             <input type="radio" id="radio18" value="0" name="question5" required/>
             <label for="radio18">Very Likely</label>
@@ -264,20 +273,20 @@
         <div class="form-container">
           <h2 class="text-center">Question 6</h2>
 
-          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-            <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/coffee.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">You’re hanging out at a coffee shop with a friend. You’re most likely to talk about:</h4>
           <div class="box">
             <input type="radio" id="radio22" value="0" name="question6" required/>
-            <label for="radio22">Very Likely</label>
+            <label for="radio22">Jesus. Heart-to-hearts or nothing!</label>
 
             <input type="radio" id="radio23" value="1" name="question6"/>
-            <label for="radio23">Somewhat Likely</label>
+            <label for="radio23">Something intellectual. “The unexamined life is not worth living” – Socrates</label>
 
             <input type="radio" id="radio24" value="2" name="question6"/>
-            <label for="radio24">Neutral</label>
+            <label for="radio24">Hobbies/common interests. (OMG did you see what happened on the bachelor last night??) (change comment in parentheses, relevant)</label>
 
             <input type="radio" id="radio25" value="3" name="question6"/>
-            <label for="radio25">Somewhat Unlikely</label>
+            <label for="radio25">Life issues/latest gossip.</label>
           </div>
 
           <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
@@ -289,8 +298,9 @@
         <div class="form-container">
            <h2 class="text-center">Question 7</h2>
 
-          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-          <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/date.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">You’re on a first date. Everything is going fine, except that _________, which is really bothersome.</h4>
+
           <div class="box">
             <input type="radio" id="radio26" value="0" name="question7" required/>
             <label for="radio26">Very Likely</label>
@@ -314,20 +324,21 @@
         <div class="form-container">
           <h2 class="text-center">Question 8</h2>
 
-          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-                     <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/friendship.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">What do you value most in a friendship?</h4>
+
           <div class="box">
             <input type="radio" id="radio30" value="0" name="question8" required/>
-            <label for="radio30">Very Likely</label>
+            <label for="radio30">Loyalty. Ride or die baby!</label>
 
             <input type="radio" id="radio31" value="1" name="question8"/>
-            <label for="radio31">Somewhat Likely</label>
+            <label for="radio31">Common interests, for sure!</label>
 
             <input type="radio" id="radio32" value="2" name="question8"/>
-            <label for="radio32">Neutral</label>
+            <label for="radio32">The ability to laugh and be goofy about anything. Sharing dank memes, yo.</label>
 
             <input type="radio" id="radio33" value="3" name="question8"/>
-            <label for="radio33">Somewhat Unlikely</label>
+            <label for="radio33">Someone to talk to about deep issues.</label>
           </div>
 
           <div class="float-left"><a class="btn btn-primary medium-btn" onclick="previous_question()">Previous</a></div>
@@ -339,8 +350,9 @@
         <div class="form-container">
           <h2 class="text-center">Question 9</h2>
 
-          <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-            <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/date.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">You’re on a first date. Everything is going fine, except that _________, which is really bothersome.</h4>
+
           <div class="box">
             <input type="radio" id="radio34" value="0" name="question9" required/>
             <label for="radio34">Very Likely</label>
@@ -364,8 +376,9 @@
         <div class="form-container">
            <h2 class="text-center">Question 10</h2>
 
-            <img src={% static "bisonMatchApp/img/bmLogo.png" %} class="img-fluid" alt="Responsive image">
-            <h3>If you could choose a dog, what kind of dog would it be?</h3>
+          <img src={% static "bisonMatchApp/img/date.gif" %} class="img-fluid quiz-img rounded mx-auto d-block" alt="Responsive image">
+           <h4 class="text-center">You’re on a first date. Everything is going fine, except that _________, which is really bothersome.</h4>
+
           <div class="box">
             <input type="radio" id="radio38" value="0" name="question10" required/>
             <label for="radio38">Math</label>
