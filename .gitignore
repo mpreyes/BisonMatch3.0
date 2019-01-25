@@ -1,7 +1,9 @@
 
 
 *.pyc
-/__pycache__/
-/bisonMatchApp/__pycache__/*.pyc
+BisonMatch3/__pycache__/
+bisonMatchApp/__pycache__/*.pyc
+bisonMatchApp/migrations/__pycache__/*.pyc
+bisonMatchApp/migrations/*.py
 settings.py 
 /media//user_profiles/*.png
