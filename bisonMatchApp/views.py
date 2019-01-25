@@ -109,13 +109,13 @@ def quiz(request):
             image_file_path = MEDIA_ROOT + "bisonMatchDefault.png"
 
         sql = "INSERT INTO lustudent VALUES ("
-        sql += "'" + request.POST["name"] + "', "
-        sql += "'" + request.POST["l-number"] + "', "
-        sql += "'" + request.POST["email"] + "', "
-        sql += "'" + request.POST["major"] + "', "
-        sql += "'" + request.POST["bio"] + "', "
-        sql += "'" + request.POST["idealdate"] + "', "
-        sql += "'" + request.POST["gender"] + "', "
+        sql += "\"" + request.POST["name"] + "\", "
+        sql += "\"" + request.POST["l-number"] + "\", "
+        sql += "\"" + request.POST["email"] + "\", "
+        sql += "\"" + request.POST["major"] + "\", "
+        sql += "\"" + request.POST["bio"] + "\", "
+        sql += "\"" + request.POST["idealdate"] + "\", "
+        sql += "\"" + request.POST["gender"] + "\", "
         sql += request.POST["question1"] + ", "
         sql += request.POST["question2"] + ", "
         sql += request.POST["question3"] + ", "
@@ -126,7 +126,7 @@ def quiz(request):
         sql += request.POST["question8"] + ", "
         sql += request.POST["question9"] + ", "
         sql += request.POST["question10"] + ", "
-        sql += "'" + image_file_path + "', "
+        sql += "\"" + image_file_path + "\", "
         sql += "0);"
 
 
@@ -156,8 +156,39 @@ def payment_error(request):
 
 
 
+def getStudentData(lnumber):
+    student = None
+    with closing(connection.cursor()) as cursor:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM `lustudent` where `lnumber` = " + str(lnumber) + ";")
+        student = cursor.fetchone()
+    connection.close()
+    return student
+
 def matches(request, slug):
-    return render(request, 'bisonMatchApp/thanks.html')
+    matchLNumbers = []
+    percentages = []
+
+    with closing(connection.cursor()) as cursor:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM `studentmatches` where `studentlnumber` = " + str(slug) + ";")
+        res = cursor.fetchall()
+        for object in res:
+            matchLNumbers.append(object[1])
+            percentages.append(object[2])
+    connection.close()
+    print(percentages)
+
+    matches = []
+    i = 0
+    for lnumber in matchLNumbers:
+        matches.append(list(getStudentData(lnumber)) + [percentages[i]])
+        i += 1
+
+    print(matches[0])
+
+    return render(request, 'bisonMatchApp/matches.html', {"matches" : matches})
+
 
 def sendResult(emailAddress, results):  #run this function to send an email to our users
     html_message = loader.render_to_string('bisonMatchApp/results_email.html', {'name': results})
