@@ -18,6 +18,11 @@
 Had to set width and height as fixed values, as we need all images to have the same size.
  */
 
+
+ .pad-me {
+   padding-top: 25px;
+   padding-bottom: 20px;
+ }
 .quiz-img {
 
   display: block;

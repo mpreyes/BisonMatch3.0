@@ -1,7 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.core.mail import send_mail
 from django.template import loader
 from django.db import connection
@@ -10,6 +8,10 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Lustudent, ImageUpload
 from .forms import ProfileForm, UploadImageForm
 from contextlib import closing
+from django.urls import reverse
+from django.shortcuts import render
+from paypal.standard.forms import PayPalPaymentsForm
+from django.views.decorators.csrf import csrf_exempt
 
 import base64
 from django.core.files.base import ContentFile
