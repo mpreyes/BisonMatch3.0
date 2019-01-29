@@ -1,18 +1,10 @@
-let children = [];
 let questions = [];
 
 window.onload = function() {
-  let parent = document.getElementById("questions-progress-bar");
-  for (let i=0; i < parent.children.length; i++) {
-    children.push(parent.children[i]);
-  }
-
   let otherParent = document.getElementById("questions-container");
   for (let i=0; i < otherParent.children.length; i++) {
-    if (i > 0) {
-      questions.push(otherParent.children[i]);
-      otherParent.children[i].style.display = "none";
-    }
+    questions.push(otherParent.children[i]);
+    otherParent.children[i].style.display = "none";
   }
   otherParent.style.display = "none";
 }
@@ -22,14 +14,6 @@ window.onload = function() {
 // Controls the toggling of a specific question.
 // ===============================================================
 function toggle_question(num) {
-  for (let i=0; i < children.length; i++) {
-    if (i < num) {
-      children[i].className = "active";
-    } else {
-      children[i].className = "";
-    }
-  }
-
   for (let i=0; i < questions.length; i++) {
     if (i == num - 1) {
       questions[i].style.display = "block";
@@ -46,37 +30,24 @@ function toggle_question(num) {
 // Controls the next button on the quiz form
 // ===============================================================
 function next_question() {
-  //let first = document.getElementById("first_third");
-  //let second = document.getElementById("second_third");
-  //let third = document.getElementById("third_third");
-
+  let quiz = document.forms["form"];
   let i = 0;
   for (; i < questions.length; i++) {
     if (questions[i].classList.contains("active")) {
+      if (quiz["question" + (i + 1)].value == "") {
+        alert("Please select an answer before continuing to the next question.");
+        return;
+      }
+
       questions[i].className = "form-container";
       questions[i + 1].className = "form-container active";
       toggle_question(i + 2);
       break;
     }
   }
-
-  /*if (i == 2) {
-    first.style.display = "none";
-    second.style.display = "block";
-    third.style.display = "none";
-  } else if (i == 6) {
-    first.style.display = "none";
-    second.style.display = "none";
-    third.style.display = "block";
-  }*/
 }
 
 function previous_question() {
-  //let first = document.getElementById("first_third");
-  //let second = document.getElementById("second_third");
-  //let third = document.getElementById("third_third");
-
-
   for (let i=0; i < questions.length; i++) {
     if (questions[i].classList.contains("active")) {
       questions[i].className = "form-container";
@@ -85,16 +56,6 @@ function previous_question() {
       break;
     }
   }
-
-  /*if (i == 5) {
-    first.style.display = "none";
-    second.style.display = "block";
-    third.style.display = "none";
-  } else if (i == 1) {
-    first.style.display = "none";
-    second.style.display = "none";
-    third.style.display = "block";
-  }*/
 }
 
 // ===============================================================
