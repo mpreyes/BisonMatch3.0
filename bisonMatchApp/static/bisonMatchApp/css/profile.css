@@ -19,12 +19,13 @@
 
 
 
-
-
 .mycard {
   background-color: white;
   padding: 5% 0;
   border-bottom: 1px solid #ddd;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
 }
 
 .mycard h4 {

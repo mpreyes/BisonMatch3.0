@@ -29,7 +29,7 @@
         </div>
 
         <h4 class="instructions label-bold">Upload a photo</h4>
-        <p class="text-center">A photo is not required. However, having a photo will greatly increase your chances of getting matches to contact you.</p>
+        <p class="text-center pad-me">A photo is <strong>not</strong> required. However, having a photo will greatly increase your chances of getting matches to contact you.</p>
 
         <div class="float-left">
           <a href="#" onclick="uploadPhoto()" class="btn btn-primary medium-btn">Upload</a>
@@ -46,42 +46,64 @@
       <!-- User information 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-6 col-sm-10 col-10 card" id="profile-info-form">
+      <div class="col-lg-6 col-md-6 col-sm-10 col-10 card margin-me" id="profile-info-form">
+
+          <h2 class="text-center pad-me"> But first, lets get some info about you </h2>
+
         <div class="float-left even-height">
-          <label class="not-radio label-bold">*Name: </label>
-          <input type="text" class="text-input" name="name" required></input>
 
-          <label class="not-radio label-bold">*L-Number: </label>
-          <input type="text" class="text-input" name="l-number" required></input>
+              <label class="not-radio label-bold" placeholder="name">*Name: </label>
+              <input type="text" class="form-control" placeholder="e.g. John Smith" name="name"> 
+              <label class="not-radio label-bold">*L-Number: </label>
+              <input type="text" class="form-control" name="l-number" required></input>
 
-          <label class="not-radio label-bold">*Email Address: </label>
-          <input type="text" class="text-input" name="email" required></input>
+              <label class="not-radio label-bold">*Email Address: </label>
+              <input type="text" class="form-control" name="email" required></input>
 
-          <label class="not-radio label-bold">*Major: </label>
-          <input type="text" class="text-input" name="major" required></input>
+              <label class="not-radio label-bold">*Major: </label>
+              <input type="text" class="form-control" name="major" required></input>
 
 
-        </div>
+              </div>
 
         <div class="float-right even-height">
-          <label class="not-radio label-bold">*Gender: </label>
+
+              <label class="not-radio label-bold">*Gender: </label>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="radio100" value="0" checked>
+            <label class="form-check-label" for="radio100">
+                  Male
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="radio101" value="1">
+                <label class="form-check-label" for="radio101">
+                  Female
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="radio102" value="2">
+                <label class="form-check-label" for="radio102">
+                  Unspecified
+                </label>
+          </div>
+
+          {% comment %} <label class="not-radio label-bold">*Gender: </label>
           <input type="radio" id="radio100" value="0" name="gender" required/>
           <label class="special-radio" for="radio100">Male</label>
           <input type="radio" id="radio101" value="1" name="gender"/>
           <label class="special-radio" for="radio101">Female</label>
           <input type="radio" id="radio101" value="2" name="gender"/>
-          <label class="special-radio" for="radio101">Undefined</label>
+          <label class="special-radio" for="radio101">Undefined</label> {% endcomment %}
         </div>
 
-        <label class="not-radio no-float label-bold">Bio: </label>
-        <textarea class="text-input textarea-input" name="bio"></textarea>
-
-          <label class="not-radio no-float label-bold">Describe Your Ideal Date: </label>
-        <textarea class="text-input textarea-input" name="idealdate"></textarea>
 
 
+          <label class="not-radio no-float label-bold">Bio: </label>
+          <textarea class="form-control textarea-input" rows="3" name="bio"></textarea>
 
-
+            <label class="not-radio no-float label-bold">Describe Your Ideal Date: </label>
+          <textarea class="form-control textarea-input" rows="3" name="idealdate"></textarea>
         <div class="float-left">
           <a href="#" class="btn btn-primary medium-btn" onclick="show_image_upload_form()">Previous</a>
         </div>
@@ -92,6 +114,7 @@
 
         <p class="small-txt">All fields marked with * are required.</p>
       </div>
+   
 
 
 

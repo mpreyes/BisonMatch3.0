@@ -23,6 +23,10 @@ Had to set width and height as fixed values, as we need all images to have the s
    padding-top: 25px;
    padding-bottom: 20px;
  }
+ .margin-me {
+   margin-top: 25px;
+   margin-bottom: 25px;
+ }
 .quiz-img {
 
   display: block;
