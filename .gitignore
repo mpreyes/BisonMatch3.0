@@ -6,4 +6,5 @@ bisonMatchApp/__pycache__/*.pyc
 bisonMatchApp/migrations/__pycache__/*.pyc
 bisonMatchApp/migrations/*.py
 settings.py 
-/media//user_profiles/*.png
+/media/user_profiles/*.png
+ngrok

@@ -1,7 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.core.mail import send_mail
 from django.template import loader
 from django.db import connection
@@ -9,6 +7,10 @@ from django.db import connection
 from .models import Lustudent, ImageUpload
 from .forms import ProfileForm, UploadImageForm
 from contextlib import closing
+from django.urls import reverse
+from django.shortcuts import render
+from paypal.standard.forms import PayPalPaymentsForm
+from django.views.decorators.csrf import csrf_exempt
 
 import base64
 from django.core.files.base import ContentFile
@@ -78,15 +80,44 @@ def quiz(request):
     else:
         return render(request, 'bisonMatchApp/quiz.html')
 
+
+
+
+
+@csrf_exempt
 def thanks(request):
     #sendResult('reyes.madelyn.mr@gmail.com','results')
-    return render(request, 'bisonMatchApp/thanks.html')
+    if request.POST:
+        print("accepting payment")
+        print(request.POST)
+        return render(request, 'bisonMatchApp/payment_success.html') 
+
+    paypal_dict = {
+        "business": "bisonmatch2.0-facilitator@gmail.com",
+        "amount": "3.0",
+        "item_name": "BisonMatch",
+        #"notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+         "notify_url": "https://4fc32dab.ngrok.io/show_me_the_money/",
+        "return": request.build_absolute_uri(reverse('payment_success')),
+        "cancel_return": request.build_absolute_uri(reverse('payment_error')),
+        "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+        }
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    context = {"form": form}
+
+    return render(request, "bisonMatchApp/thanks.html", context)
 
 
+@csrf_exempt
 def payment_success(request):
+    if request.POST:
+        print("Paypal is posting a request")
+        print(request.POST)
+        return None
     #sendResult('reyes.madelyn.mr@gmail.com','results')
     return render(request, 'bisonMatchApp/payment_success.html')
 
+@csrf_exempt
 def payment_error(request):
     #sendResult('reyes.madelyn.mr@gmail.com','results')
     return render(request, 'bisonMatchApp/payment_error.html')

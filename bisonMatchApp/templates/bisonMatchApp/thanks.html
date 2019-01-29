@@ -22,70 +22,7 @@
                     Pay Online <br>
                   </p>
                   <div id="paypal-button-container"></div>
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-      <script>
-      // Render the PayPal button
-      paypal.Button.render({
-      // Set your environment
-      env: 'sandbox', // sandbox | production
 
-      // Specify the style of the button
-      style: {
-        layout: 'vertical',  // horizontal | vertical
-        size:   'medium',    // medium | large | responsive
-        shape:  'rect',      // pill | rect
-        color:  'gold'       // gold | blue | silver | white | black
-      },
-
-      // Specify allowed and disallowed funding sources
-      //
-      // Options:
-      // - paypal.FUNDING.CARD
-      // - paypal.FUNDING.CREDIT
-      // - paypal.FUNDING.ELV
-      funding: {
-        allowed: [
-          paypal.FUNDING.CARD,
-          paypal.FUNDING.CREDIT
-        ],
-        disallowed: []
-      },
-
-      // Enable Pay Now checkout flow (optional)
-      commit: true,
-
-      // PayPal Client IDs - replace with your own
-      // Create a PayPal app: https://developer.paypal.com/developer/applications/create
-      client: {
-        sandbox: 'AVAgBPu7Ku80597Q2DlBsn0TxQtqtB6Vo-SplJfphVG0H9X9onpTCOF7MwaHDY3qReF_39C-bRWt3QeP',
-        production: 'Aa-yMquO4SzTEYw9hG_n86kvlf1Vh_DjZVHX2Pm7HtkameWkqKeObS-eqJBc4tf019zi4FMsy290Ed8a'
-      },
-
-      payment: function (data, actions) {
-        return actions.payment.create({
-          payment: {
-            transactions: [
-              {
-                amount: {
-                  total: '3',
-                  currency: 'USD'
-                }
-              }
-            ]
-          }
-    
-        });
-      },
-
-      onAuthorize: function (data, actions) {
-        return actions.payment.execute()
-          .then(function () {
-            //window.alert('Payment Complete!');
-            window.location.href = "http://127.0.0.1:8000/bisonMatch/payment_success/";
-          });
-      }
-      }, '#paypal-button-container');
-      </script>
 
       <div class="row">
       <p> **NOTE: if you choose to not pay at this time, you must come visit us at the student center.
