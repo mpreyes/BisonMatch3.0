@@ -68,7 +68,7 @@ h6 {
 }
 
 /* changed font weigth for h4 */
-h4 {  
+h4 {
  font-weight: 600;
 }
 
@@ -395,7 +395,11 @@ a:hover, a:focus, a:active {
 }
 
 .bg-primary {
-  background-color: #cc685d !important;
+  background-color: #FFC0CB !important;
+}
+
+.bg-primary p, .bg-primary i, .bg-primary h2 {
+ color: #343a40 !important;
 }
 
 .text-primary {

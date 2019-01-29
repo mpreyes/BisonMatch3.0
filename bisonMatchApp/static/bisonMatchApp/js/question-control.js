@@ -113,7 +113,11 @@ function show_quiz() {
   }
 
   if (bio_info["bio"].value == "") {
-    alert("You do not need to fill out your bio, but we would highly recommend it. Doing so will greatly increase your chances of getting more matches.");
+    alert("You do not need to fill out your bio, but we would highly recommend it. Doing so will greatly increase your chances of having your matches contact you.");
+  }
+
+  if (bio_info["idealdate"].value == "") {
+    alert("You do not need to fill out your ideal date, but we would highly recommend it. Doing so will greatly increase your chances of having your matches contact you.");
   }
 
   let profile_info = document.getElementById("profile-info-form");
@@ -174,4 +178,32 @@ document.getElementById("image-upload-button").onchange = function () {
 
     // read the image file as a data URL.
     reader.readAsDataURL(this.files[0]);
+};
+
+
+
+
+
+function checkInput() {
+  let parent = document.getElementById("lnumbers");
+  let children = parent.children;
+  let lnumbers = []
+  let form = document.forms["form"];
+
+  for (let i=0; i < children.length; i++) {
+    let child = children[i];
+    lnumbers.push(child.innerHTML);
+  }
+
+  let is_in = false
+  for (let i=0; i < lnumbers.length; i++) {
+    if (lnumbers[i] === form["invoice"].value) {is_in = true;}
+  }
+
+  if (is_in) {
+    return true;
+  } else {
+    alert("We do not have the LNumber: " + form["invoice"].value + " in our database.");
+    return false;
+  }
 };

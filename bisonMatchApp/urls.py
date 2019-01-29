@@ -9,6 +9,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('quiz/', views.quiz, name='quiz'),
     path('thanks/', views.thanks, name="thanks"),
-    path('payment_success/', views.thanks, name="payment_success"),
+    path('payment_finished/', views.payment_finished, name="payment_finished"),
+    path('cancel/', views.payment_error, name="cancel"),
     url(r'^matches/(?P<slug>[-\w]+)/$', views.matches)
 ]

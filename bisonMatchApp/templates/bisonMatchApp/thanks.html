@@ -3,122 +3,61 @@
 
 {% block content %}
 
+  <div id="lnumbers" style="display: none;">
+    {% for num in lnumbers %}
+      <p>{{ num }}</p>
+    {% endfor %}
+  </div>
 
 
-    <section class="content-section bg-primary text-white text-center" id="services">
-      <div class="container">
-        <div class="content-section-heading">
-          <h2 class="mb-5">Thanks for Taking the Quiz!</h2>
-        </div>
 
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-
-              <div class="row">
-                  <div class="col-md-6 col-sm-12">
-
-                  <i class="far fa-credit-card fa-3x "></i> <br><br>
-                    <p class="lead mb-5">
-                    Pay Online <br>
-                  </p>
-                  <div id="paypal-button-container"></div>
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-      <script>
-      // Render the PayPal button
-      paypal.Button.render({
-      // Set your environment
-      env: 'sandbox', // sandbox | production
-
-      // Specify the style of the button
-      style: {
-        layout: 'vertical',  // horizontal | vertical
-        size:   'medium',    // medium | large | responsive
-        shape:  'rect',      // pill | rect
-        color:  'gold'       // gold | blue | silver | white | black
-      },
-
-      // Specify allowed and disallowed funding sources
-      //
-      // Options:
-      // - paypal.FUNDING.CARD
-      // - paypal.FUNDING.CREDIT
-      // - paypal.FUNDING.ELV
-      funding: {
-        allowed: [
-          paypal.FUNDING.CARD,
-          paypal.FUNDING.CREDIT
-        ],
-        disallowed: []
-      },
-
-      // Enable Pay Now checkout flow (optional)
-      commit: true,
-
-      // PayPal Client IDs - replace with your own
-      // Create a PayPal app: https://developer.paypal.com/developer/applications/create
-      client: {
-        sandbox: 'AVAgBPu7Ku80597Q2DlBsn0TxQtqtB6Vo-SplJfphVG0H9X9onpTCOF7MwaHDY3qReF_39C-bRWt3QeP',
-        production: 'Aa-yMquO4SzTEYw9hG_n86kvlf1Vh_DjZVHX2Pm7HtkameWkqKeObS-eqJBc4tf019zi4FMsy290Ed8a'
-      },
-
-      payment: function (data, actions) {
-        return actions.payment.create({
-          payment: {
-            transactions: [
-              {
-                amount: {
-                  total: '3',
-                  currency: 'USD'
-                }
-              }
-            ]
-          }
-    
-        });
-      },
-
-      onAuthorize: function (data, actions) {
-        return actions.payment.execute()
-          .then(function () {
-            //window.alert('Payment Complete!');
-            window.location.href = "http://127.0.0.1:8000/bisonMatch/payment_success/";
-          });
-      }
-      }, '#paypal-button-container');
-      </script>
+  <section class="content-section bg-primary text-white text-center" id="services">
+    <div class="container">
+      <div class="content-section-heading">
+        <h2 class="mb-5">Thanks for Taking the Quiz!</h2>
+      </div>
 
       <div class="row">
-      <p> **NOTE: if you choose to not pay at this time, you must come visit us at the student center.
-      </div>
-                      
-                </div>
+        <div class="col-lg-10 mx-auto">
+
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <i class="far fa-credit-card fa-3x "></i> <br><br>
+              <p class="lead mb-5">Pay Online <br></p>
+              <div class="row">
+                <p> **NOTE: if you choose to not pay at this time, you must come visit us at the student center.
+              </div>
+            </div>
 
               <div class="col-md-6 col-sm-12">
-              <i class="fas fa-pen fa-3x"></i><br><br>
-              <p class="lead mb-5">
-                  Meet us at the student center: <br>
-                  here be ye dates
-                  {{form.render}}
-                  </p>
-              </div>
+                <i class="fas fa-pen fa-3x"></i><br><br>
+                <p class="lead mb-5">
+                    Meet us at the student center: <br>
+                    here be ye dates
+                </p>
+
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return checkInput();" name="form">
+                  {% csrf_token %}
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="hosted_button_id" value="Q7URVTBNRG6VY">
+                  <input type="text" name="invoice" value="">
+                  <input type="image" src="http://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
 
               </div>
-             <p class="lead mb-5">
+
+            </div>
+           <p class="lead mb-5">
              Insert a meme somewhere, please. <br>
 
              All proceeds will go to raising funds for LU's ACM student chapter.
-             </p> 
-            
-            <a class="btn btn-dark btn-xl js-scroll-trigger" href="/bisonMatch/">Home</a>
-          </div>
+           </p>
+
+          <a class="btn btn-dark btn-xl js-scroll-trigger" href="/bisonMatch/">Home</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
 {% endblock %}
-
-
-
-
-
-

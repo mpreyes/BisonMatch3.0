@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.core.mail import send_mail
 from django.template import loader
 from django.db import connection
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Lustudent, ImageUpload
 from .forms import ProfileForm, UploadImageForm
@@ -74,19 +75,39 @@ def quiz(request):
         connection.close()
         #This ensures that both the cursor and the connection are closed
 
-        return HttpResponseRedirect('/bisonMatch/thanks/')
+        lnumbers = getAllStudentNumbers()
+
+        return HttpResponseRedirect('/bisonMatch/thanks/', {"lnumbers" : lnumbers})
     else:
         return render(request, 'bisonMatchApp/quiz.html')
 
+@csrf_exempt
 def thanks(request):
-    #sendResult('reyes.madelyn.mr@gmail.com','results')
-    return render(request, 'bisonMatchApp/thanks.html')
+    if request.POST:
+        lnumber = request.POST.get("invoice", "")
+
+        if lnumber != "":
+            with closing(connection.cursor()) as cursor:
+                cursor = connection.cursor()
+                cursor.execute("UPDATE lustudent SET paid=1 WHERE lnumber='" + str(lnumber) + "';")
+            connection.close()
+            print("Updated person with lnumber: " + str(lnumber))
+        else:
+            print("There has been a fata error...")
+            return None
+        return render(request, 'bisonMatchApp/index.html')
 
 
-def payment_success(request):
+    lnumbers = getAllStudentNumbers()
+
+    return render(request, 'bisonMatchApp/thanks.html', {"lnumbers" : lnumbers})
+
+@csrf_exempt
+def payment_finished(request):
     #sendResult('reyes.madelyn.mr@gmail.com','results')
     return render(request, 'bisonMatchApp/payment_success.html')
 
+@csrf_exempt
 def payment_error(request):
     #sendResult('reyes.madelyn.mr@gmail.com','results')
     return render(request, 'bisonMatchApp/payment_error.html')
@@ -101,6 +122,19 @@ def getStudentData(lnumber):
         student = cursor.fetchone()
     connection.close()
     return student
+
+def getAllStudentNumbers():
+    lnumbers = []
+    with closing(connection.cursor()) as cursor:
+        cursor = connection.cursor()
+        cursor.execute("SELECT lnumber FROM lustudent;")
+        res = cursor.fetchall()
+    connection.close()
+
+    for obj in res:
+        if obj[0] != "":
+            lnumbers.append(obj[0])
+    return lnumbers
 
 def matches(request, slug):
     matchLNumbers = []
