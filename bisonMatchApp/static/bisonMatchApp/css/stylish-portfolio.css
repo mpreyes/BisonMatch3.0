@@ -18,6 +18,18 @@
 Had to set width and height as fixed values, as we need all images to have the same size.
  */
 
+ .card-pad-me
+ {
+  padding-top: 30px;
+  padding-bottom: 35px;
+
+ }
+ .card-margin-me {
+
+  margin-top: 40px;
+  margin-bottom: 30px;
+  
+ }
 
  .pad-me {
    padding-top: 25px;
@@ -25,7 +37,7 @@ Had to set width and height as fixed values, as we need all images to have the s
  }
  .margin-me {
    margin-top: 25px;
-   margin-bottom: 25px;
+   margin-bottom: 30px;
  }
 .quiz-img {
 

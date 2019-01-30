@@ -46,73 +46,77 @@
       <!-- User information 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-6 col-sm-10 col-10 card margin-me" id="profile-info-form">
+      <div class="col-lg-6 col-md-8 col-sm-10 col-10 card card-margin-me card-pad-me" id="profile-info-form" style="height: 100%">
 
-          <h2 class="text-center pad-me"> But first, lets get some info about you </h2>
+              <h2 class="text-center margin-me"> But first, let's get some info about you </h2>
+              
+            
+            <div class="float-left even-height">
 
-        <div class="float-left even-height">
+                  <label class="not-radio label-bold" placeholder="name">*Name: </label>
+                  <input type="text" class="form-control" placeholder="e.g. John Smith" name="name"> 
+                  <label class="not-radio label-bold">*L-Number: </label>
+                  <input type="text" class="form-control" name="l-number" required></input>
 
-              <label class="not-radio label-bold" placeholder="name">*Name: </label>
-              <input type="text" class="form-control" placeholder="e.g. John Smith" name="name"> 
-              <label class="not-radio label-bold">*L-Number: </label>
-              <input type="text" class="form-control" name="l-number" required></input>
+                  <label class="not-radio label-bold">*Email Address: </label>
+                  <input type="text" class="form-control" name="email" placeholder="Lipscomb Email" required></input>
 
-              <label class="not-radio label-bold">*Email Address: </label>
-              <input type="text" class="form-control" name="email" required></input>
-
-              <label class="not-radio label-bold">*Major: </label>
-              <input type="text" class="form-control" name="major" required></input>
-
-
+                  <label class="not-radio label-bold">*Major: </label>
+                  <input type="text" class="form-control" name="major" required></input>
               </div>
+              
+             <div class="float-right even-height">
 
-        <div class="float-right even-height">
+                <label class="not-radio label-bold">*Gender: </label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="radio100" value="0" checked>
+                  <label class="form-check-label" for="radio100">
+                        Male
+                      </label>
+                  </div>
 
-              <label class="not-radio label-bold">*Gender: </label>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" id="radio100" value="0" checked>
-            <label class="form-check-label" for="radio100">
-                  Male
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="gender" id="radio101" value="1">
-                <label class="form-check-label" for="radio101">
-                  Female
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="gender" id="radio102" value="2">
-                <label class="form-check-label" for="radio102">
-                  Unspecified
-                </label>
-          </div>
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gender" id="radio101" value="1">
+                      <label class="form-check-label" for="radio101">
+                        Female
+                      </label>
+                  </div>
 
-          {% comment %} <label class="not-radio label-bold">*Gender: </label>
-          <input type="radio" id="radio100" value="0" name="gender" required/>
-          <label class="special-radio" for="radio100">Male</label>
-          <input type="radio" id="radio101" value="1" name="gender"/>
-          <label class="special-radio" for="radio101">Female</label>
-          <input type="radio" id="radio101" value="2" name="gender"/>
-          <label class="special-radio" for="radio101">Undefined</label> {% endcomment %}
-        </div>
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gender" id="radio102" value="2">
+                      <label class="form-check-label" for="radio102">
+                        Unspecified
+                      </label>
+                  </div>
+                  
+            </div>
+
+           <div class="container"> 
+
+              <label class="not-radio no-float label-bold">Bio: </label>
+              <textarea class="form-control" rows="3" name="bio" placeholder="Give your matches a short bio and add any of your social media!"></textarea>
+                
+              <label class="not-radio no-float label-bold">Describe Your Ideal Date: </label>
+              <textarea class="form-control" rows="3" name="idealdate"placeholder="What would you do? Where would you go?"></textarea>
+              
+
+              <div class="pad-me float-left">
+                  <a href="#" class="btn btn-primary medium-btn" onclick="show_image_upload_form()">Previous</a>
+                  </div>
+                  <div class="pad-me float-right">
+              <a href="#" class="btn btn-primary medium-btn" onclick="show_quiz()">Next</a>
+                 <p class="small-txt">All fields marked with * are required.</p> 
+                  </div>
 
 
+            {% comment %} <div class="even-height">
+              <a href="#" class="btn btn-primary medium-btn float-left" onclick="show_image_upload_form()">Previous</a>
+              <a href="#" class="btn btn-primary medium-btn float-right" onclick="show_quiz()">Next</a>
+                          <p class="small-txt">All fields marked with * are required.</p>
 
-          <label class="not-radio no-float label-bold">Bio: </label>
-          <textarea class="form-control textarea-input" rows="3" name="bio"></textarea>
-
-            <label class="not-radio no-float label-bold">Describe Your Ideal Date: </label>
-          <textarea class="form-control textarea-input" rows="3" name="idealdate"></textarea>
-        <div class="float-left">
-          <a href="#" class="btn btn-primary medium-btn" onclick="show_image_upload_form()">Previous</a>
-        </div>
-
-        <div class="float-right">
-          <a href="#" class="btn btn-primary medium-btn" onclick="show_quiz()">Next</a>
-        </div>
-
-        <p class="small-txt">All fields marked with * are required.</p>
+            </div> {% endcomment %}
+         </div> 
+                      
       </div>
    
 

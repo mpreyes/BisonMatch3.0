@@ -10,8 +10,6 @@ from .forms import ProfileForm, UploadImageForm
 from contextlib import closing
 from django.urls import reverse
 from django.shortcuts import render
-from paypal.standard.forms import PayPalPaymentsForm
-from django.views.decorators.csrf import csrf_exempt
 
 import base64
 from django.core.files.base import ContentFile
@@ -69,7 +67,7 @@ def quiz(request):
         sql += "\"" + image_file_path + "\", "
         sql += "0);"
 
-
+        print("here be ye sql statement " + str(sql))
         #TODO Consider replacing the below to lines with the following
         with closing(connection.cursor()) as cursor:
             cursor = connection.cursor()

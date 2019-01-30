@@ -57,7 +57,11 @@ and profile information form
 }
 
 .even-height {
-  min-height: 45vh;
+  /* min-height: 45vh; */
+  height: 50%;
+}
+.button-height{
+    heigth: 20%;
 }
 
 .float-right {
@@ -206,6 +210,6 @@ input:disabled + label:before {
 
 .small-txt {
   font-size: 0.7em;
-  padding: 0 !important;
+  padding-bottom: 10px !important;
   margin: 9% 0 0 25px !important;
 }
