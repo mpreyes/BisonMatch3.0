@@ -74,22 +74,24 @@ class LustudentAdmin(admin.ModelAdmin):
             )
         return
     sendReminderEmail.short_description = 'Send Reminder to Students (Ensure all selected)'
-
+    #MADELYN EDIT THIS
     def sendMatchEmails(self, request, queryset):
         students = queryset()
         for student in students:
+            matchlink = "bisonmatch.info/matches/" + student.lnumber
+            paylink = "bisonmatch.info/thanks/"
             html_message = loader.render_to_string('bisonMatchApp/results_email.html', {'name': results})
             if student.paid:
                 subject = "Your BisonMatch Results Are Now Available!!!"
                 message = "Hi " + student.name + "! \nThank you for supporting your local "
                 message += "Association for Computing Machinery (ACM) Chapter by buying your results!\n"
-                message += "Your BisonMatch results can be viewed here:\n" + html_message + "\nHappy Valentine's Day!"
+                message += "Your BisonMatch results can be viewed here:\n" + matchlink + "\nHappy Valentine's Day!"
                 message += "Love, \n Your Friends at BisonMatch"
             else: 
                 subject = "Its Not Too Late To Find Love!"
                 message = "Hi " + student.name + "! It is not too late for you to buy your results from BisonMatch!\n"
-                message += "Visit " + loader.render_to_string('thanks/') + " to pay for your results.\n" 
-                message += "Once you have paid, you can view your results here: \n" + html_message + "\nHappy Valentine's Day!"
+                message += "Visit " + paylink + " to pay for your results.\n" 
+                message += "Once you have paid, you can view your results here: \n" + matchlink + "\nHappy Valentine's Day!"
                 message += "Love, \n Your Friends at BisonMatch"
             #Send email with appropriate subject and message
             send_mail(
