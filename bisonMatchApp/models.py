@@ -31,7 +31,7 @@ class Lustudent(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'LUStudent'
+        db_table = 'lustudent'
 
 class StudentMatches(models.Model):
     studentlnumber = models.CharField(db_column='StudentLNumber', max_length=255)
@@ -40,7 +40,7 @@ class StudentMatches(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'StudentMatches'
+        db_table = 'studentmatches'
 
 
 class AuthGroup(models.Model):
