@@ -1,0 +1,72 @@
+{% extends './default.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div id="lnumbers" style="display: none;">
+    {% for num in lnumbers %}
+      <p>{{ num }}</p>
+    {% endfor %}
+  </div>
+
+
+
+  <section class="content-section bg-primary text-white text-center" id="services">
+    <div class="container">
+      <div class="content-section-heading">
+        <h2 class="mb-5">Thanks for Taking the Quiz!</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <i class="far fa-credit-card fa-3x "></i> <br><br>
+              <p class="lead mb-5">Pay Online <br></p>
+              <div class="row">
+                <p> **NOTE: if you choose to not pay at this time, you must come visit us at the student center.
+              </div>
+            </div>
+
+              <div class="col-md-6 col-sm-12">
+                <i class="fas fa-pen fa-3x"></i><br><br>
+                <p class="lead mb-5">
+                    Meet us at the student center: <br>
+                    here be ye dates
+                </p>
+
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return checkInput();" name="form">
+                  {% csrf_token %}
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="hosted_button_id" value="Q7URVTBNRG6VY">
+                  <input type="text" name="invoice" value="">
+                  <input type="image" src="http://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+
+		
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+			<input type="hidden" name="cmd" value="_s-xclick">
+			<input type="hidden" name="hosted_button_id" value="VEZHPMGCPMEC4">
+			<input type="text" name="invoice" value="">
+			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		</form>
+
+              </div>
+
+            </div>
+           <p class="lead mb-5">
+             Insert a meme somewhere, please. <br>
+
+             All proceeds will go to raising funds for LU's ACM student chapter.
+           </p>
+
+          <a class="btn btn-dark btn-xl js-scroll-trigger" href="/bisonMatch/">Home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
