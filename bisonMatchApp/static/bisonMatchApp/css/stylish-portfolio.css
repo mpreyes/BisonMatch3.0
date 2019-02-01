@@ -18,6 +18,13 @@
 Had to set width and height as fixed values, as we need all images to have the same size.
  */
 
+.inst-row {
+  display: flex;
+  height: 50%;
+}
+ .inst-col {
+   flex: 1;
+ }
  .card-pad-me
  {
   padding-top: 30px;

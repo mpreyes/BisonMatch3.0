@@ -140,21 +140,21 @@ def matches(request, slug):
     matchLNumbers = []
     percentages = []
     paid = 0
-
     with closing(connection.cursor()) as cursor:
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM studentmatches WHERE studentlnumber = '" + str(slug) + "';")
         res = cursor.fetchall()
+        #print("res from student matches " + str(res))
     connection.close()
     for object in res:
-        matchLNumbers.append(object[1])
-        percentages.append(object[2])
+        matchLNumbers.append(object[2])
+        percentages.append(object[3])
 
     with closing(connection.cursor()) as cursor:
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM lustudent WHERE lnumber = '" + str(slug) + "';")
         res = cursor.fetchone()
-        print(res)
+        #print("res from lu student " + str(res))
         paid = res[-1]
     connection.close()
 
@@ -163,6 +163,7 @@ def matches(request, slug):
     for lnumber in matchLNumbers:
         matches.append(list(getStudentData(lnumber)) + [percentages[i]])
         i += 1
+    #print("matches: " + str(matches))
 
     return render(request, 'bisonMatchApp/matches.html', {"matches" : matches, "paid" : paid})
 
