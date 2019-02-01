@@ -24,33 +24,58 @@
             <div class="col-md-6 col-sm-12">
               <i class="far fa-credit-card fa-3x "></i> <br><br>
               <p class="lead mb-5">Pay Online <br></p>
-              <div class="row">
-                <p> **NOTE: if you choose to not pay at this time, you must come visit us at the student center.
-              </div>
-            </div>
-
-              <div class="col-md-6 col-sm-12">
-                <i class="fas fa-pen fa-3x"></i><br><br>
-                <p class="lead mb-5">
-                    Meet us at the student center: <br>
-                    here be ye dates
-                </p>
 
                 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return checkInput();" name="form">
                   {% csrf_token %}
                   <input type="hidden" name="cmd" value="_s-xclick">
                   <input type="hidden" name="hosted_button_id" value="Q7URVTBNRG6VY">
-                  <input type="text" name="invoice" value="">
+                  <input type="text" name="invoice" value="" placeholder="Enter your LNumber"> <br><br>
                   <input type="image" src="http://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                   <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
                 </form>
 
-              </div>
-
+                <br>
+                <p> **NOTE: You can use paypal, <strong>OR</strong> use the guest checkout to pay with your credit/debit card. You can always navigate back to this 
+                page if you decide to pay later.
             </div>
-           <p class="lead mb-5">
-             Insert a meme somewhere, please. <br>
 
+              <div class="col-md-6 col-sm-12">
+                <i class="fas fa-pen fa-3x"></i><br><br>
+                <p class="lead mb-5">
+                    Meet us at a table in the Student Center: <br></p>
+
+              <table class="table lead mb-5">
+                  <thead>
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Monday, February 4th</th>
+                      <td> 9:00-4:00</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Tuesday, February 5th</th>
+                      <td>9:00-4:00</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"> Wednesday, February 6th</th>
+                      <td>9:00-400</td>
+                    </tr>
+                        <tr>
+                      <th scope="row">Thursday, February 7th</th>
+                      <td>9:00-4:00</td>
+                    </tr>
+                      <tr>
+                      <th scope="row">Friday, February 8th</th>
+                      <td>9:00-4:00</td>
+                    </tr>
+                  </tbody>
+                </table>            
+              </div>
+            </div>
              All proceeds will go to raising funds for LU's ACM student chapter.
            </p>
 
