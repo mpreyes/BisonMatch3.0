@@ -17,7 +17,7 @@ totalQuestions = 10
 class LustudentAdmin(admin.ModelAdmin):
     list_display = [ 'name', 'lnumber', 'emailaddress', 'gender', 'paid']
     ordering = ['lnumber']
-    actions = ['generateMatches','markPaid']
+    actions = ['generateMatches','markPaid', 'sendReminderEmail', 'sendResultEmail']
 
     def markPaid(self, request, queryset):
         try:
@@ -48,62 +48,63 @@ class LustudentAdmin(admin.ModelAdmin):
     generateMatches.short_description = 'Generate Matches for Students (Ensure all selected)'
 
     def sendReminderEmail(self, request, queryset):
-        students = queryset()
+        students = queryset
         for student in students:
-            html_message = loader.render_to_string('bisonMatchApp/results_email.html', {'name': results})
             if student.paid:
+                html_message = loader.render_to_string('bisonMatchApp/paid_remind_email.html', {'name': student.name})
                 subject = "BisonMatch Reminder"
-                message = "Reminder that your BisonMatch results will be available via email Monday February 11, just in time to find a Valentine's Date!"
-                message += "\n Have a wonderful day!"
-                message += "Love, \n Your Friends at BisonMatch"
+                message = "Hi " + student.name + ",\n"
+                message += "Reminder that your Bison Match results will be available via email Monday February 11, just in time to find a Valentine's Date!\n"
+                message += "Have a wonderful day!\n"
+                message += "Love, \n Your Friends at Bison Match"
             else: 
+                html_message = loader.render_to_string('bisonMatchApp/unpaid_remind_email.html', {'name': student.name})
                 subject = "Its Not Too Late To Find Love!"
-                message = "Hi " + student.name + "! It is not too late for you to buy your results from BisonMatch!\n"
-                message += "Visit " + loader.render_to_string('thanks/') + " or stop by the BisonMatch table in the student center to pay for your results.\n" 
-                message += "Once you have paid, you will receive your results via email on Monday February 11, just in time to find a Valentine's Date!"
-                message += "\n Have a wonderful day!"
-                message += "Love, \n Your Friends at BisonMatch"
+                message = "Hi " + student.name + ",\nIt's not too late for you to buy your results from Bison Match!\n"
+                message += "Visit bisonmatch.info/bisonMatch/thanks or stop by the Bison Match table in the student center to pay for your results.\n" 
+                message += "Once you have paid, you will receive your results via email on Monday February 11, just in time to find a Valentine's Date!\n"
+                message += "Have a wonderful day!\n"
+                message += "Love, \n Your Friends at Bison Match"
             #Send email with appropriate subject and message
             send_mail(
                 subject, #subject
                 message,   #body
                 'bisonmatch2.0@gmail.com', #from us
-                [student.emailAddress], #to student
+                [student.emailaddress], #to student
                 fail_silently=False,
                 html_message=html_message
             )
         return
     sendReminderEmail.short_description = 'Send Reminder to Students (Ensure all selected)'
-    #MADELYN EDIT THIS
-    def sendMatchEmails(self, request, queryset):
-        students = queryset()
+    
+    def sendResultEmail(self, request, queryset):
+        students = queryset
         for student in students:
-            matchlink = "bisonmatch.info/matches/" + student.lnumber
-            paylink = "bisonmatch.info/thanks/"
-            html_message = loader.render_to_string('bisonMatchApp/results_email.html', {'name': results})
             if student.paid:
-                subject = "Your BisonMatch Results Are Now Available!!!"
-                message = "Hi " + student.name + "! \nThank you for supporting your local "
-                message += "Association for Computing Machinery (ACM) Chapter by buying your results!\n"
-                message += "Your BisonMatch results can be viewed here:\n" + matchlink + "\nHappy Valentine's Day!"
-                message += "Love, \n Your Friends at BisonMatch"
+                html_message = loader.render_to_string('bisonMatchApp/paid_results_email.html', {'name': student.name, 'lnumber': student.lnumber})
+                subject = "Your Bison Match Results Are Now Available!!!"
+                message = "Hi " + student.name + ",\n"
+                message += "Thank you for supporting your local ACM chapter by buying your results!\n"
+                message += "To view your Bison Match results, go to bisonmatch.info/bisonmatch/matches" + student.lnumber
+                message += "\nHappy Valentine's Day!\n\nMuch Love,\nYour Friends at Bison Match"
             else: 
+                html_message = loader.render_to_string('bisonMatchApp/unpaid_results_email.html', {'name': student.name, 'lnumber': student.lnumber})
                 subject = "Its Not Too Late To Find Love!"
-                message = "Hi " + student.name + "! It is not too late for you to buy your results from BisonMatch!\n"
-                message += "Visit " + paylink + " to pay for your results.\n" 
-                message += "Once you have paid, you can view your results here: \n" + matchlink + "\nHappy Valentine's Day!"
-                message += "Love, \n Your Friends at BisonMatch"
-            #Send email with appropriate subject and message
+                message = "Hi " + student.name + ",\n"
+                message += "It's not too late to view your Bison Match results!\n"
+                message += "Just go to bisonmatch.info/thanks to buy your results.\n"
+                message += "Once you have paid for your results, you can view them at bisonmatch.info/bisonmatch/matches" + student.lnumber
+                message += "\nHappy Valentine's Day!\n\nMuch Love,\nYour Friends at Bison Match"
             send_mail(
                 subject, #subject
                 message,   #body
                 'bisonmatch2.0@gmail.com', #from us
-                [student.emailAddress], #to student
+                [student.emailaddress], #to student
                 fail_silently=False,
                 html_message=html_message
             )
         return
-    sendMatchEmails.short_description = 'Send Match Link to Students (Ensure all selected)'
+    sendResultEmail.short_description = 'Send Match Link to Students (Ensure all selected)'
     
 
 
@@ -111,12 +112,7 @@ class LustudentAdmin(admin.ModelAdmin):
 class StudentMatchesAdmin(admin.ModelAdmin):
     list_display = ['studentlnumber', 'matchlnumber', 'percent']
     ordering = ['studentlnumber']
-    actions = ['delete_selected', 'sendResultEmail']
-
-    def sendResultEmail(self,request, queryset):
-        #TODO
-        return
-    sendResultEmail.short_description = 'Send results to students who paid.'
+    actions = ['delete_selected']
 
 
 def getMatchesForStudent(student):
