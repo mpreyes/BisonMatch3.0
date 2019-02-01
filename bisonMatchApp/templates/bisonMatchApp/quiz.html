@@ -12,14 +12,14 @@
   <form action="" method="POST" name="form">
     {% csrf_token %}
     <div class="row no-container-row">
-      <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+      <div class="col-lg-3 col-md-2 col-sm-0 col-0"></div>
 
 
       <!--=============================================================================================================-->
       <!-- Profile Image upload 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard" id="profile-image-upload-form">
+      <div class="col-lg-6 col-md-8 col-sm-12 col-12 mycard" id="profile-image-upload-form">
 
         <input type="text" name="image_data" style="display: none;" id="dummy" />
         <input type="file" name="image_upload" id="image-upload-button" accept="image/*"/>
@@ -46,15 +46,15 @@
       <!-- User information 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-8 col-sm-10 col-10 card card-margin-me card-pad-me" id="profile-info-form" style="height: 100%">
+      <div class="col-lg-6 col-md-8 col-sm-12 col-12 card card-margin-me card-pad-me" id="profile-info-form" style="height: 100%">
 
               <h2 class="text-center margin-me"> But first, let's get some info about you </h2>
-              
-            
+
+
             <div class="float-left even-height">
 
                   <label class="not-radio label-bold" placeholder="name">*Name: </label>
-                  <input type="text" class="form-control" placeholder="e.g. John Smith" name="name"> 
+                  <input type="text" class="form-control" placeholder="e.g. John Smith" name="name">
                   <label class="not-radio label-bold">*L-Number: </label>
                   <input type="text" class="form-control" name="l-number" required></input>
 
@@ -64,7 +64,7 @@
                   <label class="not-radio label-bold">*Major: </label>
                   <input type="text" class="form-control" name="major" required></input>
               </div>
-              
+
              <div class="float-right even-height">
 
                 <label class="not-radio label-bold">*Gender: </label>
@@ -88,24 +88,24 @@
                         Unspecified
                       </label>
                   </div>
-                  
+
             </div>
 
-           <div class="container"> 
+           <div class="container">
 
               <label class="not-radio no-float label-bold">Bio: </label>
               <textarea class="form-control" rows="3" name="bio" placeholder="Give your matches a short bio and add any of your social media!"></textarea>
-                
+
               <label class="not-radio no-float label-bold">Describe Your Ideal Date: </label>
               <textarea class="form-control" rows="3" name="idealdate"placeholder="What would you do? Where would you go?"></textarea>
-              
+
 
               <div class="pad-me float-left">
                   <a href="#" class="btn btn-primary medium-btn" onclick="show_image_upload_form()">Previous</a>
                   </div>
                   <div class="pad-me float-right">
               <a href="#" class="btn btn-primary medium-btn" onclick="show_quiz()">Next</a>
-                 <p class="small-txt">All fields marked with * are required.</p> 
+                 <p class="small-txt">All fields marked with * are required.</p>
                   </div>
 
 
@@ -115,10 +115,10 @@
                           <p class="small-txt">All fields marked with * are required.</p>
 
             </div> {% endcomment %}
-         </div> 
-                      
+         </div>
+
       </div>
-   
+
 
 
 
@@ -126,7 +126,7 @@
       <!-- Actual quiz 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-8 col-sm-10 col-10" id="questions-container" style="display: none;">
+      <div class="col-lg-6 col-md-8 col-sm-12 col-12" id="questions-container" style="display: none;">
 
         <div class="form-container active">
           <h2 class="text-center">Question 1</h2>
