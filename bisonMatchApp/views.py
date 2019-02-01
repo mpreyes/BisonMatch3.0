@@ -147,8 +147,8 @@ def matches(request, slug):
         res = cursor.fetchall()
     connection.close()
     for object in res:
-        matchLNumbers.append(object[1])
-        percentages.append(object[2])
+        matchLNumbers.append(object[2])
+        percentages.append(object[3])
 
     with closing(connection.cursor()) as cursor:
         cursor = connection.cursor()
