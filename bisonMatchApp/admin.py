@@ -10,7 +10,7 @@ from operator import itemgetter
 
 admin.site.disable_action('delete_selected')
 
-numMatches = 10
+numMatches = 5
 totalQuestions = 10
 
 @admin.register(Lustudent)
