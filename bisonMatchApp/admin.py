@@ -118,6 +118,7 @@ class StudentMatchesAdmin(admin.ModelAdmin):
         return
     sendResultEmail.short_description = 'Send results to students who paid.'
 
+
 def getMatchesForStudent(student):
     pointedStudents = getPotentialMatchesAndPoints(student)
     # Test sorting
@@ -134,8 +135,8 @@ def getPotentialMatchesAndPoints(student):
         potentialStudents = Lustudent.objects.filter(gender = 0)
     #student is undefined(2) get all students
     elif student.gender == 2:
-        potentialStudents = Lustudent.objects.filter(lnumber != student.lnumber) #this lnumber is not defined
-
+        potentialStudents = Lustudent.objects.exclude(lnumber = student.lnumber)
+        print(potentialStudents)
     pointedStudents = []
     qs = ['ans1', 'ans2', 'ans3', 'ans4', 'ans5', 'ans6', 'ans7', 'ans8', 'ans9', 'ans10']
     for potentialStudent in potentialStudents:

@@ -12,14 +12,14 @@
   <form action="" method="POST" name="form">
     {% csrf_token %}
     <div class="row no-container-row">
-      <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+      <div class="col-lg-3 col-md-2 col-sm-0 col-0"></div>
 
 
       <!--=============================================================================================================-->
       <!-- Profile Image upload 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard" id="profile-image-upload-form">
+      <div class="col-lg-6 col-md-8 col-sm-12 col-12 mycard" id="profile-image-upload-form">
 
         <input type="text" name="image_data" style="display: none;" id="dummy" />
         <input type="file" name="image_upload" id="image-upload-button" accept="image/*"/>
@@ -115,7 +115,7 @@
       <!-- Actual quiz 'form' -->
       <!--=============================================================================================================-->
 
-      <div class="col-lg-6 col-md-8 col-sm-10 col-10" id="questions-container" style="display: none;">
+      <div class="col-lg-6 col-md-8 col-sm-12 col-12" id="questions-container" style="display: none;">
 
         <div class="form-container active">
           <h2 class="text-center">Question 1</h2>
