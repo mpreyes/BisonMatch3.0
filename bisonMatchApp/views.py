@@ -93,7 +93,7 @@ def thanks(request):
             connection.close()
             print("Updated person with lnumber: " + str(lnumber))
         else:
-            print("There has been a fata error...")
+            print("There has been a fatal error...")
             return None
         return render(request, 'bisonMatchApp/index.html')
 
@@ -118,7 +118,7 @@ def getStudentData(lnumber):
     student = None
     with closing(connection.cursor()) as cursor:
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM `lustudent` where `lnumber` = " + str(lnumber) + ";")
+        cursor.execute("SELECT * FROM lustudent where lnumber = '" + str(lnumber) + "';")
         student = cursor.fetchone()
     connection.close()
     return student
@@ -143,16 +143,16 @@ def matches(request, slug):
 
     with closing(connection.cursor()) as cursor:
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM `studentmatches` where `studentlnumber` = " + str(slug) + ";")
+        cursor.execute("SELECT * FROM studentmatches WHERE studentlnumber = '" + str(slug) + "';")
         res = cursor.fetchall()
-        for object in res:
-            matchLNumbers.append(object[1])
-            percentages.append(object[2])
     connection.close()
+    for object in res:
+        matchLNumbers.append(object[1])
+        percentages.append(object[2])
 
     with closing(connection.cursor()) as cursor:
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM `lustudent` where `lnumber` = " + str(slug) + ";")
+        cursor.execute("SELECT * FROM lustudent WHERE lnumber = '" + str(slug) + "';")
         res = cursor.fetchone()
         print(res)
         paid = res[-1]
@@ -166,16 +166,3 @@ def matches(request, slug):
 
     return render(request, 'bisonMatchApp/matches.html', {"matches" : matches, "paid" : paid})
 
-
-def sendResult(emailAddress, results):  #run this function to send an email to our users
-    html_message = loader.render_to_string('bisonMatchApp/results_email.html', {'name': results})
-    subject = " hi"
-    message = "boy "
-    send_mail(
-        subject, #subject
-        message,   #body
-    'bisonmatch2.0@gmail.com', #from us
-    [emailAddress], #to you
-    fail_silently=False,
-    html_message=html_message,
-)
