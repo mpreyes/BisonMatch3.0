@@ -1,3 +1,4 @@
+
 ## Bison Match 3.0
 
 
@@ -20,10 +21,6 @@
     4. `python3 manage.py migrate`
     5. Success! you now have our database schema in your test database.
 
-
-Notes:
-
-Use python3 to avoid confusion.
 
 ## Setting up Paypal
 
@@ -52,3 +49,30 @@ notify_url=https://myapp.com/url_to_notify
 ```
 
 8. Create the button and add the code.
+
+
+# Notes:
+
+Use python3 to avoid confusion.
+Digital Ocean Django droplet for server, Talk to Becky Tallon to point domain name "bisonmatch.info" to server ip address and use masking.
+
+
+## TODO: Version 4 Changes & Improvements:
+
+Fix app so it can be taken off of debug mode (pictures)
+Add column to db to keep track of results sent
+Improve payment!
+Fix form inputs to protect from sql injection while allowing all characters. 
+Form inputs accept emoji’s
+Get system to make calls to DB in batches when generating matches and sending emails
+SECURITY (HTTPS)
+New Questions
+Add extra email to send only to people who have not paid as a final reminder the last day of sales.
+Way to download your results
+Add capacity to send more emails
+Get other people to work the bisonmatch table
+
+Dates to be live (the entire week before and week of Feb 14) Send ALL results Feb 13
+
+
+
