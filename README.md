@@ -59,20 +59,20 @@ Digital Ocean Django droplet for server, Talk to Becky Tallon to point domain na
 
 ## TODO: Version 4 Changes & Improvements:
 
-Fix app so it can be taken off of debug mode (pictures)
-Add column to db to keep track of results sent
-Improve payment!
-Fix form inputs to protect from sql injection while allowing all characters. 
-Form inputs accept emoji’s
-Get system to make calls to DB in batches when generating matches and sending emails
-SECURITY (HTTPS)
-New Questions
-Add extra email to send only to people who have not paid as a final reminder the last day of sales.
-Way to download your results
-Add capacity to send more emails
-Get other people to work the bisonmatch table
+1. Fix app so it can be taken off of debug mode (pictures)
+2. Add column to db to keep track of results sent
+3. Improve payment!
+4. Fix form inputs to protect from sql injection while allowing all characters. 
+5. Form inputs accept emoji’s
+6. Get system to make calls to DB in batches when generating matches and sending emails
+7. SECURITY (HTTPS)
+8. New Questions
+9. Add extra email to send only to people who have not paid as a final reminder the last day of sales.
+10. Way to download your results
+11. Add capacity to send more emails
+12. Get other people to work the bisonmatch table
 
-Dates to be live (the entire week before and week of Feb 14) Send ALL results Feb 13
+13. Dates to be live (the entire week before and week of Feb 14) Send ALL results Feb 13
 
 
 
