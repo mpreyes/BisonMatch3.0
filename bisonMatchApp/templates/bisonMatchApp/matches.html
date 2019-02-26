@@ -3,8 +3,17 @@
 
 {% block content %}
 
-  {% if paid == 1 %}
+  {% if paid == 1 or paid == 3 %}
     <div class="row no-container-row">
+
+     <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
+
+     <div class="col-lg-6 col-md-8 col-sm-10 col-10 mycard">
+	<h2 style="display:block; margin: 0 auto; width: 100%; text-align: center;">Here are your matches</h2>
+	<p>If you want to save your matches take a screenshot before February 16th.</p>
+     </div>
+
+     <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
 
       {% for match in matches %}
         <div class="col-lg-3 col-md-2 col-sm-1 col-1"></div>
@@ -23,6 +32,7 @@
           <p><b>Major:</b> {{match.3}}</p>
           <p><b>Bio:</b> {{ match.4 }}</p>
           <p><b>Ideal Date:</b> {{match.5}}</p>
+	  <p><b>Email: </b> {{match.2}}</p>
           <p><b>Percentage Matched:</b> {{match.19}}%</p>
         </div>
 

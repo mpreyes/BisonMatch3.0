@@ -8,3 +8,4 @@ bisonMatchApp/migrations/*.py
 settings.py 
 /media/user_profiles/*.png
 ngrok
+.vscode/
