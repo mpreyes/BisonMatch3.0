@@ -1,5 +1,6 @@
 ## Bison Match 3.0
 
+BisonMatch is a fun Valentines Day Matching Service for Lipscomb University students. Create your profile, take the quiz, buy your results, and find your match! All proceeds go to the Lipscomb University ACM Chapter.
 
 1. Install django version 2.0.2
 
